@@ -157,4 +157,31 @@ export class UploadController {
       });
     }
   }
+
+  async findAndLimit(req, res) {
+    try {
+      const {user_id} = req.params;
+      await Upload.find({user_id})
+          .sort({_id: -1})
+          .limit(5)
+          .exec((err, data) => {
+            if (err) {
+              res.status(500).json({
+                status: 500,
+                error: err.message
+              });
+              return;
+            }
+            res.status(200).json({
+              status: 200,
+              data
+            });
+          });
+    } catch (err) {
+      res.status(err.statusCode || 500).json({
+        status: err.statusCode || 500,
+        error: err.message
+      });
+    }
+  }
 }

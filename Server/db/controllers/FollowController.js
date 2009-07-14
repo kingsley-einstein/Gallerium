@@ -253,4 +253,28 @@ export class FollowController {
       });
     }
   }
+
+  async findFollowing(req, res) {
+    try {
+      const {user_id} = req.params;
+      await Following.findOne({user_id}, (err, data) => {
+        if (err) {
+          res.status(err.statusCode || 500).json({
+            status: err.statusCode || 500,
+            error: err.message
+          });
+          return;
+        }
+        res.status(200).json({
+          status: 200,
+          data
+        });
+      });
+    } catch (err) {
+      res.status(err.statusCode || 500).json({
+        status: err.statusCode || 500,
+        error: err.message
+      });
+    }
+  }
 }
