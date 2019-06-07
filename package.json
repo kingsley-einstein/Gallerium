@@ -1,0 +1,41 @@
+{
+  "name": "gallerium",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node Server/index",
+    "lint": "eslint **/**/*.js --fix",
+    "prettify:scripts": "prettier-eslint **/**/*.{js,json} --write",
+    "prettify:styles": "prettier-stylelint **/**/*.css --fix",
+    "prettify:all": "npm run prettify:scripts && npm run prettify:styles"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.13",
+    "multer": "^1.4.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.4",
+    "dotenv": "^8.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.13.0",
+    "mocha": "^6.1.4",
+    "morgan": "^1.9.1",
+    "nyc": "^14.1.1",
+    "prettier-eslint-cli": "^4.7.1",
+    "prettier-stylelint": "^0.4.2"
+  }
+}
