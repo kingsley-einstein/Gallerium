@@ -1,12 +1,11 @@
 export class Notifs {
   missingKeys(obj, keys) {
     const missingKeys = [];
-    keys.forEach(
-        (key) => {
-          if (!obj.hasProperty(key)) {
-            missingKeys.push(key);
-          }
-        });
+    keys.forEach((key) => {
+      if (!obj.hasProperty(key)) {
+        missingKeys.push(key);
+      }
+    });
     return missingKeys;
   }
 
