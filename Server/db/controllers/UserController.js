@@ -10,17 +10,19 @@ export class UserController {
       const requiredKeys = ['username', 'password'];
       const {body} = req;
       if (comparators.hasKeys(body, requiredKeys)) {
-        await User.create(body).then((user) => {
-          res.status(201).json({
-            status: 201,
-            data: user
-          });
-        }).catch((err) => {
-          res.status(500).json({
-            status: 500,
-            error: err.message
-          });
-        });
+        await User.create(body)
+            .then((user) => {
+              res.status(201).json({
+                status: 201,
+                data: user
+              });
+            })
+            .catch((err) => {
+              res.status(500).json({
+                status: 500,
+                error: err.message
+              });
+            });
       } else {
         notifs.showMissingKeys(res, body, requiredKeys);
       }

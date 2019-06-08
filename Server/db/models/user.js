@@ -2,34 +2,37 @@ import {Schema, model} from 'mongoose';
 import {genSalt, hash} from 'bcryptjs';
 import {sign} from 'jsonwebtoken';
 
-const UserSchema = new Schema({
-  username: {
-    type: String,
-    required: {
-      message: 'Username is required'
+const UserSchema = new Schema(
+    {
+      username: {
+        type: String,
+        required: {
+          message: 'Username is required'
+        },
+        unique: true
+      },
+      password: {
+        type: String,
+        required: {
+          message: 'Password is required'
+        }
+      },
+      first_name: {
+        type: String,
+        required: false
+      },
+      last_name: {
+        type: String,
+        required: false
+      },
+      token: {
+        type: String
+      }
     },
-    unique: true
-  },
-  password: {
-    type: String,
-    required: {
-      message: 'Password is required'
+    {
+      timestamps: true
     }
-  },
-  first_name: {
-    type: String,
-    required: false
-  },
-  last_name: {
-    type: String,
-    required: false
-  },
-  token: {
-    type: String
-  }
-}, {
-  timestamps: true
-});
+);
 
 UserSchema.pre('save', function(next) {
   const user = this;

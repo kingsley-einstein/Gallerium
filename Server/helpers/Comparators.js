@@ -6,12 +6,8 @@ export class Comparators {
   }
 
   hasKeys(obj, keys) {
-    return keys.every(
-        (key) => {
-          return Object.keys(obj).some(
-              (objectKey) => objectKey === key
-          );
-        }
-    );
+    return keys.every((key) => {
+      return Object.keys(obj).some((objectKey) => objectKey === key);
+    });
   }
 }
