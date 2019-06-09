@@ -17,6 +17,9 @@ const PictureSchema = new Schema(
       album_id: {
         type: Schema.Types.ObjectId,
         ref: 'Album'
+      },
+      remarks: {
+        type: String
       }
     },
     {

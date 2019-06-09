@@ -1,6 +1,9 @@
 import {Schema, model} from 'mongoose';
 import {genSalt, hash} from 'bcryptjs';
 import {sign} from 'jsonwebtoken';
+import Environment from '../../environment';
+
+const {secretOrKey} = new Environment();
 
 const UserSchema = new Schema(
     {
@@ -41,7 +44,7 @@ UserSchema.pre('save', function(next) {
       hash(user.password, salt, (err, generated) => {
         user.password = generated;
         const {username, password} = user;
-        user.token = sign({username, password}, 'secret');
+        user.token = sign({username, password}, secretOrKey);
         next(err);
       });
     });

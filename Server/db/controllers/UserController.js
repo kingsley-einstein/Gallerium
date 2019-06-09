@@ -39,7 +39,7 @@ export class UserController {
       const {username, password} = req.body;
       await User.findOne({username}, {}, {}, (err, doc) => {
         if (!doc) {
-          res.status(err.statusCode || 404).json({
+          res.status(404).json({
             status: 404,
             error: 'User not found'
           });

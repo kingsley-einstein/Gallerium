@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import router from './routes';
 import Config from './config';
 import Environment from './environment';
+import {Passport} from './auth';
 
 const app = express();
 const opts = {
@@ -15,9 +16,10 @@ const {PORT} = process.env;
 const port = PORT || 4516;
 const config = new Config();
 const environment = new Environment();
+const passport = new Passport();
 const {_db_uri} = environment;
 
-config.use(app, opts, logger, router);
+config.use(app, opts, passport, logger, router);
 
 mongoose.connect(_db_uri, {keepAlive: true}, (err) => {
   if (err) console.log(err);
