@@ -1,7 +1,7 @@
 import {join} from 'path';
 
 export default class Config {
-  use(app, {json, urlencoded, statics}, logger, router) {
+  use(app, {json, urlencoded, statics}, {init}, logger, router) {
     app.use(json());
     app.use(urlencoded({extended: false}));
     app.use(
@@ -11,6 +11,7 @@ export default class Config {
           }
         })
     );
+    app.use(init());
     app.use(logger('dev'));
     app.use('/api/v1', router);
   }
