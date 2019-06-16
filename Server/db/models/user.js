@@ -30,6 +30,10 @@ const UserSchema = new Schema(
       },
       token: {
         type: String
+      },
+      pic: {
+        type: Schema.Types.ObjectId,
+        ref: 'Picture'
       }
     },
     {
