@@ -4,7 +4,8 @@ import {parser} from './uploads';
 import {
   UserController,
   PictureController,
-  VideoController
+  VideoController,
+  AlbumController
 } from './db/controllers';
 
 const router = Router();
@@ -13,6 +14,7 @@ const {single} = parser;
 const userController = new UserController();
 const pictureController = new PictureController();
 const videoController = new VideoController();
+const albumController = new AlbumController();
 
 router.get('/', (req, res) => {
   res.status(200).json({
@@ -47,5 +49,11 @@ router.post(
     single('video'),
     videoController.create
 );
+
+// Album specific routes
+router.post('/album', authenticate('jwt'), albumController.create);
+router.get('/album/user', authenticate('jwt'), albumController.getAlbumsByUser);
+router.put('/album/:album_id', authenticate('jwt'), albumController.update);
+router.delete('/album/:album_id', authenticate('jwt'), albumController.delete);
 
 export default router;
