@@ -5,3 +5,5 @@ export {Album} from './album';
 export {Comment} from './comment';
 export {Following} from './following';
 export {Follower} from './follower';
+export {Message} from './message';
+export {Text} from './text';
