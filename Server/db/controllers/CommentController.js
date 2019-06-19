@@ -1,14 +1,14 @@
-import {Album} from '../models';
+import {Comment} from '../models';
 
-export class AlbumController {
+export class CommentController {
   async create(req, res) {
     try {
-      const {query} = req;
-      await Album.create(query)
-          .then((created) => {
+      const {body} = req;
+      await Comment.create(body)
+          .then((comment) => {
             res.status(201).json({
               status: 201,
-              data: created
+              data: comment
             });
           })
           .catch((err) => {
@@ -25,10 +25,10 @@ export class AlbumController {
     }
   }
 
-  async getAlbumsByUser(req, res) {
+  async findCommentsOnPicture(req, res) {
     try {
-      const {user_id} = req.query;
-      await Album.find({user_id}, (err, docs) => {
+      const {picture_id} = req.query;
+      await Comment.find({picture_id}, (err, doc) => {
         if (err) {
           res.status(err.statusCode || 500).json({
             status: err.statusCode || 500,
@@ -37,7 +37,7 @@ export class AlbumController {
         } else {
           res.status(200).json({
             status: 200,
-            data: docs
+            data: doc
           });
         }
       });
@@ -49,11 +49,35 @@ export class AlbumController {
     }
   }
 
-  async update(req, res) {
+  async findCommentsOnVideo(req, res) {
+    try {
+      const {video_id} = req.query;
+      await Comment.find({video_id}, (err, doc) => {
+        if (err) {
+          res.status(err.statusCode || 500).json({
+            status: err.statusCode || 500,
+            error: err.message
+          });
+        } else {
+          res.status(200).json({
+            status: 200,
+            data: doc
+          });
+        }
+      });
+    } catch (err) {
+      res.status(err.statusCode || 500).json({
+        status: err.statusCode || 500,
+        error: err.message
+      });
+    }
+  }
+
+  async editComment(req, res) {
     try {
       const {body, params} = req;
-      const {album_id} = params;
-      await Album.findByIdAndUpdate(album_id, body, (err, doc) => {
+      const {id} = params;
+      await Comment.findByIdAndUpdate(id, body, (err, doc) => {
         if (err) {
           res.status(err.statusCode || 500).json({
             status: err.statusCode || 500,
@@ -74,14 +98,14 @@ export class AlbumController {
     }
   }
 
-  async delete(req, res) {
+  async deleteComment(req, res) {
     try {
-      const {album_id} = req.params;
-      await Album.findByIdAndDelete(album_id, (err, doc) => {
+      const {id} = req.params;
+      await Comment.findByIdAndDelete(id, (err, doc) => {
         if (err) {
           res.status(err.statusCode || 500).json({
             status: err.statusCode || 500,
-            data: doc
+            error: err.message
           });
         } else {
           res.status(200).json({
