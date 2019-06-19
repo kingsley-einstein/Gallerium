@@ -10,7 +10,7 @@ import {
 
 const router = Router();
 const {authenticate} = new Passport();
-const {single} = parser;
+// const {single} = parser;
 const userController = new UserController();
 const pictureController = new PictureController();
 const videoController = new VideoController();
@@ -37,7 +37,7 @@ router.get(
 router.post(
     '/picture',
     authenticate('jwt'),
-    single('picture'),
+    parser.single('picture'),
     pictureController.create
 );
 router.get('/pictures', authenticate('jwt'), pictureController.findAllByUser);
@@ -46,7 +46,7 @@ router.get('/pictures', authenticate('jwt'), pictureController.findAllByUser);
 router.post(
     '/video',
     authenticate('jwt'),
-    single('video'),
+    parser.single('video'),
     videoController.create
 );
 
