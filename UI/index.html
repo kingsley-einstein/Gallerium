@@ -2,13 +2,20 @@
 <html>
   <head>
     <title>Gallerium</title>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="/fontawesome/css/fontawesome.css" />
+    <link rel="stylesheet" href="/fontawesome/css/solid.css" />
+    <link rel="stylesheet" href="/fontawesome/css/brands.css" />
   </head>
   <body>
-    <div id="app">
+    <div id="app" class="main">
       <!--This is the rendering context of the app-->
     </div>
+    <script id="script"></script> <!--Script specific to loaded templates-->
     <script src="/js/route.js"></script>
     <script src="/js/router.js"></script>
     <script src="/js/spa.js"></script>
+    <script src="/js/load-scripts.js"></script>
   </body>
 </html>
