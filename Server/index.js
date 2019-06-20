@@ -18,10 +18,15 @@ const config = new Config();
 const environment = new Environment();
 const passport = new Passport();
 const {_db_uri} = environment;
+const options = {
+  keepAlive: true,
+  useNewUrlParser: true,
+  useCreateIndex: true
+};
 
 config.use(app, opts, passport, logger, router);
 
-mongoose.connect(_db_uri, {keepAlive: true}, (err) => {
+mongoose.connect(_db_uri, options, (err) => {
   if (err) console.log(err);
   else {
     app.listen(port, () => {
