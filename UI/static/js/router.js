@@ -34,14 +34,29 @@ Router.prototype = {
             return value.url.replace('/', '') == route.default.replace('#', '');
           });
           this.navigate(loc.url, loc.renderingContext);
+          if (loc.hasScript) {
+            setTimeout(() => {
+              loadScript(`/js/${loc.url.replace('/', '')}.js`);
+            }, 2000);
+          }
         } else {
           this.navigate(route.url, route.renderingContext);
+          if (route.hasScript) {
+            setTimeout(() => {
+              loadScript(`/js/${route.url.replace('/', '')}.js`);
+            }, 2000);
+          }
         }
       } else {
         const alt = this.routes.find((value) => {
           return value.url.replace('/', '') == this.default.replace('#', '');
         });
         this.navigate(alt.url, alt.renderingContext);
+        if (alt.hasScript) {
+          setTimeout(() => {
+            loadScript(`/js/${alt.url.replace('/', '')}.js`);
+          }, 2000);
+        }
       }
     });
   },
@@ -50,5 +65,10 @@ Router.prototype = {
       return value.url.replace('/', '') === this.default.replace('#', '');
     });
     this.navigate(route.url, route.renderingContext);
+    if (route.hasScript) {
+      setTimeout(() => {
+        loadScript(`/js/${route.url.replace('/', '')}.js`);
+      }, 2000);
+    }
   }
 };
