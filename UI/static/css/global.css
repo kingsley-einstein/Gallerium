@@ -10,12 +10,16 @@
 
 @font-face {
   src: url('/fonts/Oswald/Oswald-Regular.ttf') format('truetype');
-  font-family: 'Oswald Regular'
+  font-family: 'Oswald Regular';
 }
 
 #app {
-  overflow: scroll;
+  overflow-y: scroll;
 }
+
+/* #home {
+  overflow-y: scroll;
+} */
 
 body {
   margin: 0;
@@ -24,6 +28,12 @@ body {
 
 ul {
   list-style: none;
+}
+
+button {
+  background: transparent;
+  border: none;
+  color: white;
 }
 
 /* .container {
@@ -39,25 +49,60 @@ ul {
 .header {
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-end;
-  background: mediumpurple;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   padding: 12px;
-  box-shadow: 0 4px 2px silver;
 }
 
 .footer {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  padding: 12px;
+}
+
+.toolbar-raised {
+  box-shadow: 1px 4px 2px silver;
+}
+
+.toolbar-raised-invert {
+  box-shadow: -1px -4px 2px silver;
+}
+
+.toolbar-purple {
+  background: mediumpurple;
+}
+
+.toolbar-antique {
+  background: antiquewhite;
+}
+
+.toolbar-flex-end {
+  justify-content: flex-end;
+}
+
+.toolbar-flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  color: floralwhite;
+}
+
+.btn:active {
+  color: mediumaquamarine;
+  opacity: 0.3;
 }
 
 .main {
@@ -226,4 +271,41 @@ ul {
   width: 20px;
   height: 20px;
   animation: spinner 1s infinite linear;
+}
+
+.sidebar {
+  border: none;
+  background: gainsboro;
+  box-shadow: 1px 4px 2px silver;
+  z-index: 2;
+  position: fixed;
+  height: 100%;
+  right: -200px;
+  top: 0;
+  bottom: 0;
+  transition: all 500ms ease-in;
+  opacity: 0;
+  width: 50%;
+}
+
+.sidebar.show {
+  opacity: 1;
+  right: 0;
+}
+
+.round-button {
+  border: none;
+  border-radius: 50%;
+  color: white;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+}
+
+.button-raised {
+  box-shadow: 1px 4px 2px silver;
+}
+
+.button-pink {
+  background: hotpink;
 }

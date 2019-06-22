@@ -32,6 +32,7 @@ router.get(
     authenticate('jwt'),
     userController.findUsersMatching
 );
+router.put('/users/:id', authenticate('jwt'), userController.update);
 
 // Picture specific routes
 router.post(
