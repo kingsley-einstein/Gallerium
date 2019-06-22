@@ -10,6 +10,7 @@ Router.prototype = {
     this.default = config.default || '';
     this.toDefault();
     this.watchHashChange();
+    // this.popState();
   },
   async navigate(url, renderingContext) {
     const resolved = fetch(url, {
@@ -20,7 +21,10 @@ Router.prototype = {
     });
     await resolved
         .then((res) => res.text())
-        .then((res) => (renderingContext.innerHTML = res))
+        .then((res) => {
+          renderingContext.innerHTML = res;
+        // window.history.pushState({}, url, window.location.origin + url);
+        })
         .catch((err) => console.log(err));
   },
   watchHashChange() {
@@ -29,11 +33,18 @@ Router.prototype = {
         return value.isActive(window.location.hash);
       });
       if (route) {
+        // if (route.hasChildren) {
+        //   reloadRouter();
+        // }
         if (route.hasDefault) {
+          console.log('Has default');
           const loc = this.routes.find((value) => {
             return value.url.replace('/', '') == route.default.replace('#', '');
           });
-          this.navigate(loc.url, loc.renderingContext);
+          this.navigate(route.url, route.renderingContext);
+          setTimeout(() => {
+            this.navigate(loc.url, loc.renderingContext);
+          }, 1000);
           if (loc.hasScript) {
             setTimeout(() => {
               loadScript(`/js/${loc.url.replace('/', '')}.js`);
@@ -41,6 +52,7 @@ Router.prototype = {
           }
         } else {
           this.navigate(route.url, route.renderingContext);
+          // console.log(route.renderingContext);
           if (route.hasScript) {
             setTimeout(() => {
               loadScript(`/js/${route.url.replace('/', '')}.js`);
@@ -70,5 +82,17 @@ Router.prototype = {
         loadScript(`/js/${route.url.replace('/', '')}.js`);
       }, 2000);
     }
+  },
+  popState() {
+    window.onpopstate = () => {
+      const res = this.routes.find((value) => {
+        return (
+          new RegExp(window.location.hash.substring(1)).test(
+              value.url.replace('/', '')
+          ) || new RegExp(window.location.pathname).test(value.url.replace(''))
+        );
+      });
+      this.navigate(res.url, res.renderingContext);
+    };
   }
 };

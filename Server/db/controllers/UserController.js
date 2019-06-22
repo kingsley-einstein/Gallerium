@@ -106,4 +106,29 @@ export class UserController {
       });
     }
   }
+
+  async update(req, res) {
+    try {
+      const {body, params} = req;
+      const {id} = params;
+      await User.findByIdAndUpdate(id, body, (err, user) => {
+        if (err) {
+          res.status(err.statusCode || 500).json({
+            status: err.statusCode || 500,
+            error: err.message
+          });
+        } else {
+          res.status(200).json({
+            status: 200,
+            data: user
+          });
+        }
+      });
+    } catch (err) {
+      res.status(err.statusCode || 500).json({
+        status: err.statusCode || 500,
+        error: err.message
+      });
+    }
+  }
 }
