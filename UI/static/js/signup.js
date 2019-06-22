@@ -1,4 +1,5 @@
 const signUpForm = document.getElementById('sign-up');
+const spinner = document.getElementById('spinner');
 // const form = document.createElement('form');
 const submit = async (data) => {
   const send = await fetch('/api/v1/auth/register', {
@@ -8,7 +9,16 @@ const submit = async (data) => {
       'Content-Type': 'application/json'
     }
   });
+  showSpinner();
   return send;
+};
+
+const showSpinner = async () => {
+  await spinner.classList.remove('hide');
+};
+
+const hideSpinner = async () => {
+  await spinner.classList.add('hide');
 };
 
 signUpForm.addEventListener('submit', (event) => {
@@ -23,7 +33,13 @@ signUpForm.addEventListener('submit', (event) => {
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
+        hideSpinner();
+        window.location.assign('#home');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        hideSpinner();
+      });
   event.preventDefault();
+  signUpForm.reset();
 });
