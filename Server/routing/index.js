@@ -29,5 +29,8 @@ export class Pages {
     app.get('/upload', (req, res) => {
       res.sendFile(join(__dirname, '../../UI/views/upload.html'));
     });
+    app.get('/collection', (req, res) => {
+      res.sendFile(join(__dirname, '../../UI/views/collection.html'));
+    });
   }
 }

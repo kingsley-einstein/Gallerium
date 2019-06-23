@@ -66,6 +66,12 @@ button {
   padding: 12px;
 }
 
+.toolbar {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 12px;
+}
+
 .toolbar-raised {
   box-shadow: 1px 4px 2px silver;
 }
@@ -74,12 +80,16 @@ button {
   box-shadow: -1px -4px 2px silver;
 }
 
+.toolbar-bordered {
+  border: 2px solid darkgray;
+}
+
 .toolbar-purple {
   background: mediumpurple;
 }
 
-.toolbar-antique {
-  background: antiquewhite;
+.toolbar-hash {
+  background: ghostwhite;
 }
 
 .toolbar-flex-end {
@@ -100,8 +110,12 @@ button {
   color: floralwhite;
 }
 
-.btn:active {
-  color: mediumaquamarine;
+.btn.grayed {
+  color: gainsboro;
+}
+
+.btn.active {
+  color: black;
   opacity: 0.3;
 }
 
@@ -308,4 +322,50 @@ button {
 
 .button-pink {
   background: hotpink;
+}
+
+.button-blue {
+  background: midnightblue;
+}
+
+.button-marginized {
+  margin: 1.5em;
+}
+
+.board {
+  background: whitesmoke;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+}
+
+.board img {
+  border: 2px solid black;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.collection {
+  display: flex;
+  margin-top: 20px;
+}
+
+.collection.is-with-placeholder {
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.collection.is-grid-of-images {
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.collection.is-grid-of-images img {
+  width: 100px;
+  height: 100px;
 }

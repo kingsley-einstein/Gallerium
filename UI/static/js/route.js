@@ -14,6 +14,7 @@ Route.prototype = {
   hasRequiredScript: false,
   requiredScriptUrl: '',
   self: '',
+  parentTag: '',
   async constructor(config) {
     // this.children = config.children || [];
     this.url = config.url || '/';
@@ -27,9 +28,11 @@ Route.prototype = {
     this.hasRequiredScript = config.hasRequiredScript || false;
     this.requiredScriptUrl = config.requiredScriptUrl || null;
     this.self = config.self || '';
+    // this.parentTag = config.parentTag || null;
     // this.id = config.id || null;
     this.watchForChanges();
     this.watchSelf();
+    console.log(this.self);
   },
   isActive(loc) {
     return new RegExp(loc.substring(1)).test(this.url.replace('/', ''));
@@ -39,8 +42,9 @@ Route.prototype = {
       mutations.forEach((record) => {
         record.addedNodes.forEach((node) => {
           // console.log(node.id);
+          // console.log(this.self);
           if (node.id == this.watchTag) {
-            console.log(node.id);
+            // console.log(node.id);
             this.renderingContext = document.getElementById(this.watchTag);
             // this.contextInDOM = true;
           }
@@ -48,6 +52,7 @@ Route.prototype = {
       });
     });
     observer.observe(document.getElementById('app'), {
+      subtree: true,
       childList: true
     });
   },
@@ -70,7 +75,8 @@ Route.prototype = {
         });
       });
     });
-    observer.observe(document.getElementById(this.watchTag), {
+    observer.observe(document.getElementById('app'), {
+      subtree: true,
       childList: true
     });
   }
