@@ -8,7 +8,8 @@ const router = new Router({
       renderingContext: document.getElementById('app'),
       hasScript: false,
       hasChildren: true,
-      watchTag: 'app'
+      watchTag: 'app',
+      self: '/'
     }),
     new Route({
       url: '/login',
@@ -16,7 +17,8 @@ const router = new Router({
       default: null,
       renderingContext: document.getElementById('app'),
       hasScript: true,
-      watchTag: 'app'
+      watchTag: 'app',
+      self: 'login'
     }),
     new Route({
       url: '/landing',
@@ -24,7 +26,8 @@ const router = new Router({
       default: null,
       renderingContext: document.getElementById('app'),
       hasScript: false,
-      watchTag: 'app'
+      watchTag: 'app',
+      self: 'landing'
     }),
     new Route({
       url: '/signup',
@@ -32,7 +35,8 @@ const router = new Router({
       default: null,
       renderingContext: document.getElementById('app'),
       hasScript: true,
-      watchTag: 'app'
+      watchTag: 'app',
+      self: 'signup'
     }),
     new Route({
       url: '/home',
@@ -43,35 +47,54 @@ const router = new Router({
       hasChildren: true,
       watchTag: 'app',
       hasRequiredScript: true,
-      requiredScriptUrl: '/js/home.js'
+      requiredScriptUrl: '/js/home.js',
+      self: 'home'
     }),
     new Route({
       url: '/feeds',
       hasDefault: false,
       renderingContext: document.getElementById('home'),
       hasScript: false,
-      watchTag: 'home'
+      watchTag: 'home',
+      self: 'feeds'
+      // parentTag: 'app'
     }),
     new Route({
       url: '/profile',
-      hasDefault: false,
+      hasDefault: true,
       renderingContext: document.getElementById('home'),
       hasScript: false,
-      watchTag: 'home'
+      watchTag: 'home',
+      default: '#collection',
+      self: 'profile'
+      // parentTag: 'app'
     }),
     new Route({
       url: '/settings',
       hasDefault: false,
       renderingContext: document.getElementById('home'),
       hasScript: false,
-      watchTag: 'home'
+      watchTag: 'home',
+      self: 'settings'
+      // parentTag: 'app'
     }),
     new Route({
       url: '/upload',
       hasDefault: false,
       renderingContext: document.getElementById('home'),
       hasScript: false,
-      watchTag: 'home'
+      watchTag: 'home',
+      parentTag: 'app',
+      self: 'upload'
+    }),
+    new Route({
+      url: '/collection',
+      hasDefault: false,
+      renderingContext: document.getElementById('profile'),
+      hasScript: false,
+      watchTag: 'profile',
+      // parentTag: 'home',
+      self: 'collection'
     })
   ],
   default: '#landing'
