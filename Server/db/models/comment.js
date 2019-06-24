@@ -12,15 +12,20 @@ const CommentSchema = new Schema({
     required: true,
     ref: 'User'
   },
-  picture_id: {
+  // picture_id: {
+  //   type: Schema.Types.ObjectId,
+  //   required: false,
+  //   ref: 'Picture'
+  // },
+  // video_id: {
+  //   type: Schema.Types.ObjectId,
+  //   required: false,
+  //   ref: 'Video'
+  // }
+  file_id: {
     type: Schema.Types.ObjectId,
-    required: false,
-    ref: 'Picture'
-  },
-  video_id: {
-    type: Schema.Types.ObjectId,
-    required: false,
-    ref: 'Video'
+    required: true,
+    ref: 'File'
   }
 });
 

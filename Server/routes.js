@@ -3,18 +3,20 @@ import {Passport} from './auth';
 import {parser} from './uploads';
 import {
   UserController,
-  PictureController,
-  VideoController,
-  AlbumController
+  // PictureController,
+  // VideoController,
+  // AlbumController
+  UploadController
 } from './db/controllers';
 
 const router = Router();
 const {authenticate} = new Passport();
 // const {single} = parser;
 const userController = new UserController();
-const pictureController = new PictureController();
-const videoController = new VideoController();
-const albumController = new AlbumController();
+// const pictureController = new PictureController();
+// const videoController = new VideoController();
+// const albumController = new AlbumController();
+const uploadController = new UploadController();
 
 router.get('/', (req, res) => {
   res.status(200).json({
@@ -34,27 +36,39 @@ router.get(
 );
 router.put('/users/:id', authenticate('jwt'), userController.update);
 
-// Picture specific routes
-router.post(
-    '/picture',
-    authenticate('jwt'),
-    parser.single('picture'),
-    pictureController.create
-);
-router.get('/pictures', authenticate('jwt'), pictureController.findAllByUser);
+// // Picture specific routes
+// router.post(
+//     '/picture',
+//     authenticate('jwt'),
+//     parser.single('picture'),
+//     pictureController.create
+// );
+// router.get('/pictures',
+// authenticate('jwt'),
+// pictureController.findAllByUser);
 
-// Video specific routes
-router.post(
-    '/video',
-    authenticate('jwt'),
-    parser.single('video'),
-    videoController.create
-);
+// // Video specific routes
+// router.post(
+//     '/video',
+//     authenticate('jwt'),
+//     parser.single('video'),
+//     videoController.create
+// );
 
 // Album specific routes
 router.post('/album', authenticate('jwt'), albumController.create);
 router.get('/album/user', authenticate('jwt'), albumController.getAlbumsByUser);
 router.put('/album/:album_id', authenticate('jwt'), albumController.update);
 router.delete('/album/:album_id', authenticate('jwt'), albumController.delete);
+
+// Upload specific routes
+router.post('/upload',
+    authenticate('jwt'),
+    parser.single('file'),
+    uploadController.create);
+router.post('/upload/multiple',
+    authenticate('jwt'),
+    parser.array('file'),
+    uploadController.createMultiple);
 
 export default router;
