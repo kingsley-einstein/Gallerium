@@ -5,7 +5,7 @@ import {
   UserController,
   // PictureController,
   // VideoController,
-  // AlbumController
+  AlbumController,
   UploadController
 } from './db/controllers';
 
