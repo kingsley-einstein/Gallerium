@@ -45,30 +45,36 @@ Router.prototype = {
           setTimeout(() => {
             this.navigate(loc.url, loc.renderingContext);
           }, 1000);
-          if (loc.hasScript) {
-            setTimeout(() => {
-              loadScript(`/js/${loc.url.replace('/', '')}.js`);
-            }, 2000);
-          }
+          // if (loc.hasScript) {
+          //   setTimeout(() => {
+          //     loadScript(`/js/${loc.url.replace('/', '')}.js`);
+          //   }, 2000);
+          // } else {
+          //   unloadScript();
+          // }
         } else {
           this.navigate(route.url, route.renderingContext);
           // console.log(route.renderingContext);
-          if (route.hasScript) {
-            setTimeout(() => {
-              loadScript(`/js/${route.url.replace('/', '')}.js`);
-            }, 2000);
-          }
+          // if (route.hasScript) {
+          //   setTimeout(() => {
+          //     loadScript(`/js/${route.url.replace('/', '')}.js`);
+          //   }, 2000);
+          // } else {
+          //   unloadScript();
+          // }
         }
       } else {
         const alt = this.routes.find((value) => {
           return value.url.replace('/', '') == this.default.replace('#', '');
         });
         this.navigate(alt.url, alt.renderingContext);
-        if (alt.hasScript) {
-          setTimeout(() => {
-            loadScript(`/js/${alt.url.replace('/', '')}.js`);
-          }, 2000);
-        }
+        // if (alt.hasScript) {
+        //   setTimeout(() => {
+        //     loadScript(`/js/${alt.url.replace('/', '')}.js`);
+        //   }, 2000);
+        // } else {
+        //   unloadScript();
+        // }
       }
     });
   },
@@ -77,11 +83,13 @@ Router.prototype = {
       return value.url.replace('/', '') === this.default.replace('#', '');
     });
     this.navigate(route.url, route.renderingContext);
-    if (route.hasScript) {
-      setTimeout(() => {
-        loadScript(`/js/${route.url.replace('/', '')}.js`);
-      }, 2000);
-    }
+    // if (route.hasScript) {
+    //   setTimeout(() => {
+    //     loadScript(`/js/${route.url.replace('/', '')}.js`);
+    //   }, 2000);
+    // } else {
+    //   // unloadScript();
+    // }
   },
   popState() {
     window.onpopstate = () => {
@@ -89,7 +97,8 @@ Router.prototype = {
         return (
           new RegExp(window.location.hash.substring(1)).test(
               value.url.replace('/', '')
-          ) || new RegExp(window.location.pathname).test(value.url.replace(''))
+          ) || new RegExp(window.location.pathname)
+              .test(value.url.replace('/', ''))
         );
       });
       this.navigate(res.url, res.renderingContext);

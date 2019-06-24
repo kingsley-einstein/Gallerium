@@ -112,6 +112,7 @@ button {
 
 .btn.grayed {
   color: gainsboro;
+  font-weight: bolder;
 }
 
 .btn.active {
@@ -258,6 +259,72 @@ button {
   box-shadow: 0 4px 2px silver;
 }
 
+.check-flex {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 12px;
+}
+
+.check-label {
+  font-weight: bold;
+}
+
+.check-group {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 20px;
+  margin-right: 2.5em;
+  margin-left: 2.5em;
+}
+
+.check-group input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #dcdcdc;
+  transition: 500ms;
+}
+
+.slider::before {
+  position: absolute;
+  content: '';
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 500ms;
+  box-shadow: 1px 1px 2px silver;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background: hotpink;
+}
+
+input:checked + .slider::before {
+  transform: translateX(40px);
+  box-shadow: none;
+}
+
 /* .input-has-icon input {
   
 } */
@@ -348,6 +415,32 @@ button {
   height: 50px;
 }
 
+.board.marginized-left {
+  margin-left: 1.5em;
+}
+
+.mini-card {
+  border: 1px solid gainsboro;
+  padding: 10px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 2px 2px silver;
+  background: white;
+  transition: all 500ms ease-in-out;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.mini-card p {
+  font-size: 13px;
+}
+
+.mini-card:hover {
+  box-shadow: 1px 2px 2px gold;
+}
+
 .collection {
   display: flex;
   margin-top: 20px;
@@ -368,4 +461,16 @@ button {
 .collection.is-grid-of-images img {
   width: 100px;
   height: 100px;
+}
+
+i.blue {
+  color: mediumblue;
+}
+
+i.gainsboro {
+  color: gainsboro;
+}
+
+i.green {
+  color: mediumseagreen;
 }

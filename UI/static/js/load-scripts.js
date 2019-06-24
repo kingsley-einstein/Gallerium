@@ -6,6 +6,12 @@ const spaScript = document.getElementById('spa');
 const loadScript = (url) => {
   script.src = url;
 };
+
+// eslint-disable-next-line no-unused-vars
+const unloadScript = () => {
+  script.src = '';
+};
+
 // eslint-disable-next-line no-unused-vars
 const reloadRouter = () => {
   setTimeout(() => {

@@ -15,6 +15,8 @@ Route.prototype = {
   requiredScriptUrl: '',
   self: '',
   parentTag: '',
+  hasParentScript: false,
+  parentScriptUrl: '',
   async constructor(config) {
     // this.children = config.children || [];
     this.url = config.url || '/';
@@ -28,6 +30,8 @@ Route.prototype = {
     this.hasRequiredScript = config.hasRequiredScript || false;
     this.requiredScriptUrl = config.requiredScriptUrl || null;
     this.self = config.self || '';
+    this.hasParentScript = config.hasParentScript || false;
+    this.parentScriptUrl = config.parentScriptUrl || '';
     // this.parentTag = config.parentTag || null;
     // this.id = config.id || null;
     this.watchForChanges();
@@ -59,17 +63,37 @@ Route.prototype = {
   loadRequiredScript() {
     const requiredScript = document.createElement('script');
     requiredScript.src = this.requiredScriptUrl;
+    requiredScript.id = 'required';
     document.body.append(requiredScript);
+  },
+  unloadFormerScript() {
+    const formerScript = document.getElementById('required');
+    if (formerScript) {
+      document.body.removeChild(formerScript);
+    }
+  },
+  loadParentScript() {
+    const parentScript = document.createElement('script');
+    parentScript.src = this.parentScriptUrl;
+    document.body.append(parentScript);
   },
   watchSelf() {
     const observer = new MutationObserver((mutations, observer) => {
       mutations.forEach((record) => {
         record.addedNodes.forEach((node) => {
           if (node.id == this.self) {
+            if (this.hasParentScript) {
+              setTimeout(() => {
+                this.loadParentScript();
+              }, 1000);
+            }
             if (this.hasRequiredScript) {
               setTimeout(() => {
+                this.unloadFormerScript();
                 this.loadRequiredScript();
               }, 1000);
+            } else {
+              this.unloadFormerScript();
             }
           }
         });

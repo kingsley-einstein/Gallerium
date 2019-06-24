@@ -16,9 +16,10 @@ const router = new Router({
       hasDefault: false,
       default: null,
       renderingContext: document.getElementById('app'),
-      hasScript: true,
+      hasRequiredScript: true,
       watchTag: 'app',
-      self: 'login'
+      self: 'login',
+      requiredScriptUrl: '/js/login.js'
     }),
     new Route({
       url: '/landing',
@@ -34,20 +35,20 @@ const router = new Router({
       hasDefault: false,
       default: null,
       renderingContext: document.getElementById('app'),
-      hasScript: true,
+      hasRequiredScript: true,
       watchTag: 'app',
-      self: 'signup'
+      self: 'signup',
+      requiredScriptUrl: '/js/signup.js'
     }),
     new Route({
       url: '/home',
       hasDefault: true,
       default: '#feeds',
       renderingContext: document.getElementById('app'),
-      hasScript: true,
+      hasParentScript: true,
       hasChildren: true,
       watchTag: 'app',
-      hasRequiredScript: true,
-      requiredScriptUrl: '/js/home.js',
+      parentScriptUrl: '/js/home.js',
       self: 'home'
     }),
     new Route({
