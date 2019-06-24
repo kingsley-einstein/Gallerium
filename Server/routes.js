@@ -15,7 +15,7 @@ const {authenticate} = new Passport();
 const userController = new UserController();
 // const pictureController = new PictureController();
 // const videoController = new VideoController();
-// const albumController = new AlbumController();
+const albumController = new AlbumController();
 const uploadController = new UploadController();
 
 router.get('/', (req, res) => {
