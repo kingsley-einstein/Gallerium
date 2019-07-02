@@ -96,6 +96,21 @@ const router = new Router({
       watchTag: 'profile',
       // parentTag: 'home',
       self: 'collection'
+    }),
+    new Route({
+      url: '/followers',
+      hasDefault: false,
+      renderingContext: document.getElementById('profile'),
+      hasScript: false,
+      watchTag: 'profile',
+      self: 'followers'
+    }),
+    new Route({
+      url: '/search',
+      hasDefault: false,
+      renderingContext: document.getElementById('home'),
+      watchTag: 'home',
+      self: 'search'
     })
   ],
   default: '#landing'

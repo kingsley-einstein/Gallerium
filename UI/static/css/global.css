@@ -21,6 +21,10 @@
   overflow-y: scroll;
 } */
 
+* {
+  outline: none;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -183,6 +187,12 @@ button {
   margin: 30px;
 }
 
+.special-row {
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
 .special a {
   border: none;
   box-shadow: 0 4px 2px silver;
@@ -328,6 +338,36 @@ input:checked + .slider::before {
 /* .input-has-icon input {
   
 } */
+.search-group {
+  position: relative;
+  display: inline-block;
+  height: 40px;
+}
+
+.search {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.search input {
+  background: ghostwhite;
+  box-shadow: 0 2px 2px silver;
+  border: none;
+  width: 100%;
+  padding: 12px;
+}
+
+.search::after {
+  content: '\2192';
+  position: absolute;
+  font-size: 30px;
+  right: 2px;
+  top: 2px;
+  color: gainsboro;
+}
 
 .input-group input:focus {
   border-color: mediumslateblue;
@@ -473,4 +513,8 @@ i.gainsboro {
 
 i.green {
   color: mediumseagreen;
+}
+
+.feeds-card {
+  display: flex;
 }

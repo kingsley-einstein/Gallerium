@@ -37,7 +37,9 @@ export class UserController {
   async login(req, res) {
     try {
       const {username, password} = req.body;
-      await User.findOne({username}, {}, {}, (err, doc) => {
+      await User.findOne({username}, (err, doc) => {
+        // console.log(username);
+        // console.log(doc);
         if (!doc) {
           res.status(404).json({
             status: 404,
