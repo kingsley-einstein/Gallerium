@@ -32,5 +32,11 @@ export class Pages {
     app.get('/collection', (req, res) => {
       res.sendFile(join(__dirname, '../../UI/views/collection.html'));
     });
+    app.get('/followers', (req, res) => {
+      res.sendFile(join(__dirname, '../../UI/views/followers.html'));
+    });
+    app.get('/search', (req, res) => {
+      res.sendFile(join(__dirname, '../../UI/views/search.html'));
+    });
   }
 }
