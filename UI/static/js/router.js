@@ -10,7 +10,7 @@ Router.prototype = {
     this.default = config.default || '';
     this.toDefault();
     this.watchHashChange();
-    // this.popState();
+    this.popState();
   },
   async navigate(url, renderingContext) {
     const resolved = fetch(url, {
@@ -23,7 +23,13 @@ Router.prototype = {
         .then((res) => res.text())
         .then((res) => {
           renderingContext.innerHTML = res;
-        // window.history.pushState({}, url, window.location.origin + url);
+          // location.hash.replace('#', '');
+          window.history.pushState(
+              document,
+              url,
+              window.location.origin + url
+          );
+          // renderingContext.innerHTML = res;
         })
         .catch((err) => console.log(err));
   },
