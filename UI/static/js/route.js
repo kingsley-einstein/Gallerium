@@ -74,6 +74,7 @@ Route.prototype = {
   },
   loadParentScript() {
     const parentScript = document.createElement('script');
+    parentScript.id = this.self + '-#script';
     parentScript.src = this.parentScriptUrl;
     document.body.append(parentScript);
   },
@@ -83,9 +84,14 @@ Route.prototype = {
         record.addedNodes.forEach((node) => {
           if (node.id == this.self) {
             if (this.hasParentScript) {
+              if (document.getElementById(this.self + '-#script')) {
+                document.body.removeChild(
+                    document.getElementById(this.self + '-#script')
+                );
+              }
               setTimeout(() => {
                 this.loadParentScript();
-              }, 1000);
+              }, 500);
             }
             if (this.hasRequiredScript) {
               setTimeout(() => {
