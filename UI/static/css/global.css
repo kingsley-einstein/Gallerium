@@ -483,24 +483,27 @@ input:checked + .slider::before {
 
 .collection {
   display: flex;
-  margin-top: 20px;
+  width: inherit;
+  overflow: scroll;
 }
 
 .collection.is-with-placeholder {
-  justify-content: center;
+  justify-content: baseline;
   align-items: center;
   font-size: 20px;
   font-weight: bold;
 }
 
 .collection.is-grid-of-images {
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
 }
 
 .collection.is-grid-of-images img {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
+  border: 1px solid silver;
 }
 
 i.blue {

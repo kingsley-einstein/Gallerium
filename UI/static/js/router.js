@@ -10,7 +10,7 @@ Router.prototype = {
     this.default = config.default || '';
     this.toDefault();
     this.watchHashChange();
-    this.popState();
+    // this.popState();
   },
   async navigate(url, renderingContext) {
     const resolved = fetch(url, {
@@ -97,17 +97,17 @@ Router.prototype = {
     //   // unloadScript();
     // }
   },
-  popState() {
-    window.onpopstate = () => {
-      const res = this.routes.find((value) => {
-        return (
-          new RegExp(window.location.hash.substring(1)).test(
-              value.url.replace('/', '')
-          ) || new RegExp(window.location.pathname)
-              .test(value.url.replace('/', ''))
-        );
-      });
-      this.navigate(res.url, res.renderingContext);
-    };
-  }
+  // popState() {
+  //   window.onpopstate = (event) => {
+  //     const res = this.routes.find((value) => {
+  //       return (
+  //         new RegExp(window.location.hash.substring(1)).test(
+  //             value.url.replace('/', '')
+  //         ) || new RegExp(window.location.pathname)
+  //             .test(value.url.replace('/', ''))
+  //       );
+  //     });
+  //     this.navigate(res.url, res.renderingContext);
+  //   };
+  // }
 };

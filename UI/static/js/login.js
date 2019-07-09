@@ -19,6 +19,19 @@
   const hideSpinner = async () => {
     await spinner.classList.add('hide');
   };
+  const handleResponse = ({status, data, error}) => {
+    const errorStatusRegex = new RegExp(/(4\d\d)|(5\d\d)/);
+    if (errorStatusRegex.test(status.toString())) {
+      console.log(error);
+      hideSpinner();
+    } else {
+      hideSpinner();
+      const {token, _id} = data;
+      localStorage.setItem('token', token);
+      localStorage.setItem('id', _id);
+      location.assign('#home');
+    }
+  };
   loginForm.addEventListener('submit', (event) => {
     const data = {};
     for (let i = 0; i < loginForm.elements.length; i++) {
@@ -31,8 +44,9 @@
     submit(data).then((res) => res.json())
         .then((res) => {
           console.log(res);
-          hideSpinner();
-          window.location.assign('#home');
+          // hideSpinner();
+          // window.location.assign('#home');
+          handleResponse(res);
         })
         .catch((err) => {
           console.log(err);

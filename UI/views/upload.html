@@ -1,4 +1,4 @@
-<section class="special has-top-margin">
+<section class="special has-top-margin" id="upload">
   <button class="round-button button-raised button-pink button-marginized">
     <i class="fas fa-lg fa-camera"></i>
   </button>
@@ -6,9 +6,12 @@
     <i class="fas fa-lg fa-video"></i>
   </button>
   <div class="input-group">
-    <form>
-      <input type="file" name="file" />
+    <form id="upload-form">
+      <input type="file" name="file" multiple />
       <button type="submit">Upload</button>
     </form>
+  </div>
+  <div id="spinner" class="spinner-flex hide">
+    <div class="spinner"></div>
   </div>
 </section>

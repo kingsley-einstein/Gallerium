@@ -1,30 +1,30 @@
 import {Upload} from '../models';
 
 export class UploadController {
-  async create(req, res) {
-    try {
-      const {body, file, query} = req;
-      body.url = file.url;
-      body.user_id = query.user_id;
-      body.album_id = query.album_id;
-      await Upload.create(body).then((upload) => {
-        res.status(201).json({
-          status: 201,
-          data: upload
-        });
-      }).catch((err) => {
-        res.status(err.statusCode || 500).json({
-          status: err.statusCode || 500,
-          error: err.message
-        });
-      });
-    } catch (err) {
-      res.status(err.statusCode || 500).json({
-        status: err.statusCode || 500,
-        error: err.message
-      });
-    }
-  }
+  // async create(req, res) {
+  //   try {
+  //     const {body, file, query} = req;
+  //     body.url = file.url;
+  //     body.user_id = query.user_id;
+  //     body.album_id = query.album_id;
+  //     await Upload.create(body).then((upload) => {
+  //       res.status(201).json({
+  //         status: 201,
+  //         data: upload
+  //       });
+  //     }).catch((err) => {
+  //       res.status(err.statusCode || 500).json({
+  //         status: err.statusCode || 500,
+  //         error: err.message
+  //       });
+  //     });
+  //   } catch (err) {
+  //     res.status(err.statusCode || 500).json({
+  //       status: err.statusCode || 500,
+  //       error: err.message
+  //     });
+  //   }
+  // }
 
   async createMultiple(req, res) {
     try {
