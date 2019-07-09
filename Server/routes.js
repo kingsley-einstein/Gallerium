@@ -62,13 +62,14 @@ router.put('/album/:album_id', authenticate('jwt'), albumController.update);
 router.delete('/album/:album_id', authenticate('jwt'), albumController.delete);
 
 // Upload specific routes
+// router.post('/upload',
+//     authenticate('jwt'),
+//     parser.single('file'),
+//     uploadController.create);
 router.post('/upload',
-    authenticate('jwt'),
-    parser.single('file'),
-    uploadController.create);
-router.post('/upload/multiple',
     authenticate('jwt'),
     parser.array('file'),
     uploadController.createMultiple);
+router.get('/uploads/byuser', authenticate('jwt'), uploadController.findByUser);
 
 export default router;

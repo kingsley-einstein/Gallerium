@@ -83,7 +83,8 @@ const router = new Router({
       url: '/upload',
       hasDefault: false,
       renderingContext: document.getElementById('home'),
-      hasScript: false,
+      hasRequiredScript: true,
+      requiredScriptUrl: '/js/upload.js',
       watchTag: 'home',
       parentTag: 'app',
       self: 'upload'
@@ -92,7 +93,8 @@ const router = new Router({
       url: '/collection',
       hasDefault: false,
       renderingContext: document.getElementById('profile'),
-      hasScript: false,
+      hasRequiredScript: true,
+      requiredScriptUrl: '/js/collection.js',
       watchTag: 'profile',
       // parentTag: 'home',
       self: 'collection'
