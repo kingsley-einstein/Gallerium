@@ -66,10 +66,12 @@ router.delete('/album/:album_id', authenticate('jwt'), albumController.delete);
 //     authenticate('jwt'),
 //     parser.single('file'),
 //     uploadController.create);
-router.post('/upload',
+router.post(
+    '/upload',
     authenticate('jwt'),
     parser.array('file'),
-    uploadController.createMultiple);
+    uploadController.createMultiple
+);
 router.get('/uploads/byuser', authenticate('jwt'), uploadController.findByUser);
 
 export default router;

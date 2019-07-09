@@ -42,17 +42,19 @@ export class UploadController {
           url
         });
       });
-      await Upload.create(fileArr).then((uploads) => {
-        res.status(201).json({
-          status: 201,
-          data: uploads
-        });
-      }).catch((err) => {
-        res.status(err.statusCode || 500).json({
-          status: err.statusCode || 500,
-          error: err.message
-        });
-      });
+      await Upload.create(fileArr)
+          .then((uploads) => {
+            res.status(201).json({
+              status: 201,
+              data: uploads
+            });
+          })
+          .catch((err) => {
+            res.status(err.statusCode || 500).json({
+              status: err.statusCode || 500,
+              error: err.message
+            });
+          });
     } catch (err) {
       res.status(err.statusCode || 500).json({
         status: err.statusCode || 500,
