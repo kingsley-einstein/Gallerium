@@ -24,4 +24,3 @@ const FileSchema = new Schema({
 });
 
 export const Upload = model('File', FileSchema);
-

@@ -24,12 +24,8 @@ Router.prototype = {
         .then((res) => {
           renderingContext.innerHTML = res;
           // location.hash.replace('#', '');
-          window.history.pushState(
-              document,
-              url,
-              window.location.origin + url
-          );
-          // renderingContext.innerHTML = res;
+          window.history.pushState(document, url, window.location.origin + url);
+        // renderingContext.innerHTML = res;
         })
         .catch((err) => console.log(err));
   },
@@ -96,7 +92,7 @@ Router.prototype = {
     // } else {
     //   // unloadScript();
     // }
-  },
+  }
   // popState() {
   //   window.onpopstate = (event) => {
   //     const res = this.routes.find((value) => {

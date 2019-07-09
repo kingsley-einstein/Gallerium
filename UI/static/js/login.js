@@ -41,7 +41,8 @@
       }
     }
     // console.log(data);
-    submit(data).then((res) => res.json())
+    submit(data)
+        .then((res) => res.json())
         .then((res) => {
           console.log(res);
           // hideSpinner();

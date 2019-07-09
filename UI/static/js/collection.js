@@ -34,7 +34,8 @@
       'Authorization': `Bearer ${localStorage.getItem('token')}`,
       'Content-Type': 'application/json'
     }
-  }).then((res) => res.json())
+  })
+      .then((res) => res.json())
       .then((res) => {
         handleResponse(res);
       })

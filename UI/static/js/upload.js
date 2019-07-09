@@ -15,13 +15,15 @@
           method: 'POST',
           body: new FormData(data),
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`
           }
-        });
+        }
+    );
     return send;
   };
   uploadForm.addEventListener('submit', (event) => {
-    submit(uploadForm).then((res) => res.json())
+    submit(uploadForm)
+        .then((res) => res.json())
         .then((res) => {
           console.log(res);
           hideSpinner();
