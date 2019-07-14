@@ -435,6 +435,10 @@ input:checked + .slider::before {
   background: midnightblue;
 }
 
+.button-green {
+  background: mediumseagreen;
+}
+
 .button-marginized {
   margin: 1.5em;
 }
@@ -500,10 +504,24 @@ input:checked + .slider::before {
   flex-flow: row wrap;
 }
 
-.collection.is-grid-of-images img {
+.collection.is-grid-of-images div {
   width: 70px;
   height: 70px;
   border: 1px solid silver;
+  position: relative;
+}
+
+.collection.is-grid-of-images img {
+  width: inherit;
+  height: inherit;
+}
+
+.collection.is-grid-of-images div > button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
 }
 
 i.blue {

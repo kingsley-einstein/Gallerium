@@ -29,7 +29,7 @@
       const {token, _id} = data;
       localStorage.setItem('token', token);
       localStorage.setItem('id', _id);
-      location.assign('#home');
+      location.assign(`#home?user_id=${_id}`);
     }
   };
   loginForm.addEventListener('submit', (event) => {
