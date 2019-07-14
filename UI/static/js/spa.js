@@ -55,7 +55,6 @@ const router = new Router({
       url: '/feeds',
       hasDefault: false,
       renderingContext: document.getElementById('home'),
-      hasScript: false,
       watchTag: 'home',
       self: 'feeds'
       // parentTag: 'app'
@@ -64,7 +63,8 @@ const router = new Router({
       url: '/profile',
       hasDefault: true,
       renderingContext: document.getElementById('home'),
-      hasScript: false,
+      hasParentScript: true,
+      parentScriptUrl: '/js/profile.js',
       watchTag: 'home',
       default: '#collection',
       self: 'profile'

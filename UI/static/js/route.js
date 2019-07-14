@@ -39,7 +39,9 @@ Route.prototype = {
     console.log(this.self);
   },
   isActive(loc) {
-    return new RegExp(loc.substring(1)).test(this.url.replace('/', ''));
+    return new RegExp(
+        loc.substring(1).split('?')[0]
+    ).test(this.url.replace('/', ''));
   },
   watchForChanges() {
     const observer = new MutationObserver((mutations, observer) => {

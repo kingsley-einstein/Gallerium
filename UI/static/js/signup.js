@@ -36,7 +36,10 @@
         .then((res) => {
           console.log(res);
           hideSpinner();
-          window.location.assign('#home');
+          const {_id, token} = res;
+          localStorage.setItem('token', token);
+          localStorage.setItem('id', _id);
+          window.location.assign(`#home?user_id=${_id}`);
         })
         .catch((err) => {
           console.log(err);
