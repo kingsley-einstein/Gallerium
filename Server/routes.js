@@ -73,5 +73,10 @@ router.post(
     uploadController.createMultiple
 );
 router.get('/uploads/byuser', authenticate('jwt'), uploadController.findByUser);
+router.get(
+    '/uploads/byid/:file_id',
+    authenticate('jwt'),
+    uploadController.getOne
+);
 
 export default router;

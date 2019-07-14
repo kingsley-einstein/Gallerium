@@ -15,13 +15,16 @@
 
           button.className = 'button-green';
           button.addEventListener('click', (event) => {
-            setPic(item._id).then((res) => {
-              return res.json();
-            }).then((res) => {
-              console.log(res);
-            }).catch((err) => {
-              console.log(err);
-            });
+            setPic(item._id)
+                .then((res) => {
+                  return res.json();
+                })
+                .then((res) => {
+                  console.log(res);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
           });
           button.textContent = 'Set';
           image.src = item.url;
