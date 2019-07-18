@@ -92,6 +92,22 @@ button {
   background: mediumpurple;
 }
 
+.toolbar-dew {
+  background: honeydew;
+}
+
+.toolbar-ghostey {
+  background: ghostwhite;
+}
+
+.toolbar-ivory {
+  background: ivory;
+}
+
+.toolbar-mintcream {
+  background: mintcream;
+}
+
 .toolbar-hash {
   background: ghostwhite;
 }
@@ -111,7 +127,12 @@ button {
   text-decoration: none;
   margin-left: 1.5em;
   margin-right: 1.5em;
-  color: floralwhite;
+  color: gainsboro;
+  padding: 2px;
+}
+
+.btn:hover {
+  color: midnightblue;
 }
 
 .btn.grayed {
@@ -120,8 +141,11 @@ button {
 }
 
 .btn.active {
+  color: midnightblue;
+}
+
+.b-sidebar {
   color: black;
-  opacity: 0.3;
 }
 
 .main {
@@ -129,7 +153,7 @@ button {
   flex-flow: column nowrap;
   margin: 0;
   padding: 0;
-  background: whitesmoke;
+  background: white;
   overflow: scroll;
   position: absolute;
   height: 100%;
@@ -353,8 +377,8 @@ input:checked + .slider::before {
 }
 
 .search input {
-  background: ghostwhite;
-  box-shadow: 0 2px 2px silver;
+  background: whitesmoke;
+  box-shadow: 2px 2px 2px silver;
   border: none;
   width: 100%;
   padding: 12px;
@@ -396,7 +420,7 @@ input:checked + .slider::before {
 
 .sidebar {
   border: none;
-  background: gainsboro;
+  background: whitesmoke;
   box-shadow: 1px 4px 2px silver;
   z-index: 2;
   position: fixed;
@@ -444,7 +468,7 @@ input:checked + .slider::before {
 }
 
 .board {
-  background: whitesmoke;
+  background: white;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
