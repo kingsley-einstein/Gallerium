@@ -88,19 +88,20 @@ export class UserController {
   async findUsersMatching(req, res) {
     try {
       const {search} = req.query;
-      await User.find({username: {$regex: search}}).exec((err, docs) => {
-        if (err) {
-          res.status(500).json({
-            status: 500,
-            error: err.message
+      await User.find({username: {$regex: search, $options: 'i'}}).exec(
+          (err, docs) => {
+            if (err) {
+              res.status(500).json({
+                status: 500,
+                error: err.message
+              });
+            } else {
+              res.status(200).json({
+                status: 200,
+                data: docs
+              });
+            }
           });
-        } else {
-          res.status(200).json({
-            status: 200,
-            data: docs
-          });
-        }
-      });
     } catch (err) {
       res.status(err.statusCode || 500).json({
         status: err.statusCode || 500,

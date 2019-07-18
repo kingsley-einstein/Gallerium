@@ -112,7 +112,9 @@ const router = new Router({
       hasDefault: false,
       renderingContext: document.getElementById('home'),
       watchTag: 'home',
-      self: 'search'
+      self: 'search',
+      hasRequiredScript: true,
+      requiredScriptUrl: '/js/search.js'
     })
   ],
   default: '#landing'

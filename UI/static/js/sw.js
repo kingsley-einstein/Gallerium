@@ -6,10 +6,20 @@ self.addEventListener('install', (event) => {
           '/landing',
           '/signup',
           '/login',
+          '/settings',
+          '/home',
+          '/upload',
+          '/feeds',
+          '/profile',
+          '/search',
+          '/collection',
           '/js/route.js',
           '/js/router.js',
           '/js/load-scripts.js',
           '/js/spa.js',
+          '/js/login.js',
+          '/js/signup.js',
+          '/js/home.js',
           '/css/global.css'
         ]);
       })
@@ -19,19 +29,15 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method === 'GET') {
     // console.log('GET');
-    event.respondWith(
-        caches.match(event.request).then((res) => {
-          return (
-            res ||
-          fetch(event.request).then((response) => {
-            return caches.open('gallerium').then((cache) => {
-              cache.put(event.request, response.clone());
-              console.log('INTERCEPTED AND CACHED');
-              return response;
-            });
-          })
-          );
-        })
-    );
+    event.respondWith(caches.open('gallerium').then((cache) => {
+      return cache.match(event.request).then((cacheResponse) => {
+        const fetchPromise = fetch(event.request).then((networkResponse) => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+        event.waitUntil(fetchPromise);
+        return cacheResponse;
+      });
+    }));
   }
 });
