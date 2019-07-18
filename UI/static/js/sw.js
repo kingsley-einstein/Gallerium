@@ -29,15 +29,15 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method === 'GET') {
     // console.log('GET');
-    event.respondWith(caches.open('gallerium').then((cache) => {
-      return cache.match(event.request).then((cacheResponse) => {
-        const fetchPromise = fetch(event.request).then((networkResponse) => {
-          cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        });
-        event.waitUntil(fetchPromise);
-        return cacheResponse;
+    // event.waitUntil(fetchResponse);
+    const fetchResponse = caches.open('gallerium').then((cache) => {
+      return fetch(event.request).then((res) => {
+        cache.put(event.request, res.clone());
+        return res;
+      }).catch(() => {
+        return caches.match(event.request);
       });
-    }));
+    });
+    event.respondWith(fetchResponse);
   }
 });
