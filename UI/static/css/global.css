@@ -165,15 +165,27 @@ button {
   flex-flow: column nowrap;
   margin: 0;
   padding: 0;
-  background: white;
+  background: whitesmoke;
   overflow: scroll;
   position: absolute;
   height: 100%;
-  width: 100%;
+  width: 100vw;
+}
+
+.has-top-margin-em {
+  margin-top: 3.5em;
+}
+
+.has-bottom-margin-em {
+  margin-bottom: 2.5em;
 }
 
 .has-top-margin {
   margin-top: 30%;
+}
+
+.has-bottom-margin {
+  margin-bottom: 20%;
 }
 
 .has-vert button {
@@ -188,9 +200,10 @@ button {
 }
 
 .special {
-  padding: 14px;
+  padding: 10px;
   display: flex;
   flex-flow: column wrap;
+  overflow: scroll;
 }
 
 .special p {
@@ -199,7 +212,7 @@ button {
   justify-content: center;
   align-items: center;
   font-family: 'Oswald Regular', sans-serif;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .has-svgs {
@@ -560,11 +573,38 @@ input:checked + .slider::before {
   flex-flow: row wrap;
 }
 
+.feed-item > div {
+  width: 100%;
+}
+
+.feed-item i {
+  margin: 0.5em;
+}
+
+.feed-item i.shadowed {
+  color: white;
+  text-shadow: 1px 1px 1px black, -1px -1px 1px black, 1px -1px 1px black,
+    -1px 1px 1px black, 1px 1px 1px black;
+}
+
 .collection.is-grid-of-images div {
   width: 70px;
   height: 70px;
   border: 1px solid silver;
   position: relative;
+}
+
+.feed-item img.upload {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.feed-item img.small {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid black;
 }
 
 .collection.is-grid-of-images img {
@@ -625,7 +665,7 @@ i.green {
   display: flex;
   flex-flow: column wrap;
   height: 200px;
-  width: 80%;
+  width: 75%;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -638,4 +678,14 @@ i.green {
   right: 0;
   width: 100%;
   padding: 12px;
+}
+
+.feed-item {
+  margin-top: 0.5em;
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #dcdcdc;
 }

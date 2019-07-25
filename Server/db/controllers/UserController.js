@@ -1,8 +1,11 @@
+import {sign} from 'jsonwebtoken';
 import {User} from '../models';
 import {Comparators, Notifs} from '../../helpers';
+import Environment from '../../environment';
 
 const comparators = new Comparators();
 const notifs = new Notifs();
+const {secretOrKey} = new Environment();
 
 export class UserController {
   async create(req, res) {
@@ -47,6 +50,11 @@ export class UserController {
           });
         } else {
           if (comparators.comparePassword(password, doc.password)) {
+            const {username, password} = doc;
+            doc.token = sign({username, password}, secretOrKey, {
+              expiresIn: '14d'
+            });
+            doc.save();
             res.status(200).json({
               status: 200,
               data: doc
