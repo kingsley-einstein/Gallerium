@@ -2,6 +2,8 @@
   // console.log('WELCOME');
   const loginForm = document.getElementById('sign-in');
   const spinner = document.getElementById('spinner');
+  const alert = document.getElementById('alert');
+  const alertText = document.getElementById('alert-text');
   const submit = async (data) => {
     const send = await fetch('/api/v1/auth/login', {
       method: 'POST',
@@ -19,10 +21,18 @@
   const hideSpinner = async () => {
     await spinner.classList.add('hide');
   };
+  const showAndDismissAlert = (text) => {
+    alertText.textContent = text;
+    alert.classList.add('show');
+    setTimeout(() => {
+      alert.classList.remove('show');
+    }, 3000);
+  };
   const handleResponse = ({status, data, error}) => {
     const errorStatusRegex = new RegExp(/(4\d\d)|(5\d\d)/);
     if (errorStatusRegex.test(status.toString())) {
       console.log(error);
+      showAndDismissAlert(error);
       hideSpinner();
     } else {
       hideSpinner();
