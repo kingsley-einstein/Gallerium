@@ -13,6 +13,11 @@
   font-family: 'Oswald Regular';
 }
 
+@font-face {
+  src: url('/fonts/Ubuntu/Ubuntu-Regular.ttf') format('truetype');
+  font-family: 'Ubuntu Regular';
+}
+
 #app {
   overflow-y: scroll;
 }
@@ -23,6 +28,7 @@
 
 * {
   outline: none;
+  font-family: 'Ubuntu Regular', sans-serif;
 }
 
 body {
@@ -30,8 +36,14 @@ body {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 button {
@@ -217,6 +229,23 @@ button {
   justify-content: center;
 }
 
+.sidebar a {
+  display: block;
+  padding: 12px 14px;
+  text-align: center;
+  color: black;
+  font-size: 15px;
+}
+
+.sidebar ul {
+  margin-top: 0.5em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 4px;
+}
+
 .special a {
   border: none;
   box-shadow: 0 4px 2px silver;
@@ -351,7 +380,7 @@ button {
 }
 
 input:checked + .slider {
-  background: hotpink;
+  background: mediumpurple;
 }
 
 input:checked + .slider::before {
@@ -409,10 +438,9 @@ input:checked + .slider::before {
 }
 
 .spinner {
-  border: 5px double gainsboro;
+  border: 5px solid gainsboro;
   border-top-color: mediumblue;
   border-radius: 50%;
-  background: mediumturquoise;
   width: 20px;
   height: 20px;
   animation: spinner 1s infinite linear;
@@ -461,6 +489,10 @@ input:checked + .slider::before {
 
 .button-green {
   background: mediumseagreen;
+}
+
+.button-red {
+  background: mediumvioletred;
 }
 
 .button-marginized {
@@ -516,7 +548,7 @@ input:checked + .slider::before {
 }
 
 .collection.is-with-placeholder {
-  justify-content: baseline;
+  justify-content: center;
   align-items: center;
   font-size: 20px;
   font-weight: bold;
@@ -562,4 +594,48 @@ i.green {
 
 .feeds-card {
   display: flex;
+}
+
+.alert-backdrop {
+  position: fixed;
+  background: rgba(0, 0, 0, 0);
+  display: none;
+  height: 100%;
+  width: 100%;
+  transition: 1s all ease-in-out;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
+
+.alert-backdrop.show {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+}
+
+.alert-box {
+  background: ghostwhite;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column wrap;
+  height: 200px;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.alert-box > .action {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 12px;
 }

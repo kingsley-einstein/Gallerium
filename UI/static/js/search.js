@@ -11,12 +11,15 @@
     return send;
   };
   searchInput.addEventListener('input', (event) => {
-    search(event).then((res) => {
-      return res.json();
-    }).then((value) => {
-      console.log(value);
-    }).catch((err) => {
-      console.log(err);
-    });
+    search(event)
+        .then((res) => {
+          return res.json();
+        })
+        .then((value) => {
+          console.log(value);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   });
 })();

@@ -31,12 +31,14 @@ self.addEventListener('fetch', (event) => {
     // console.log('GET');
     // event.waitUntil(fetchResponse);
     const fetchResponse = caches.open('gallerium').then((cache) => {
-      return fetch(event.request).then((res) => {
-        cache.put(event.request, res.clone());
-        return res;
-      }).catch(() => {
-        return caches.match(event.request);
-      });
+      return fetch(event.request)
+          .then((res) => {
+            cache.put(event.request, res.clone());
+            return res;
+          })
+          .catch(() => {
+            return caches.match(event.request);
+          });
     });
     event.respondWith(fetchResponse);
   }
