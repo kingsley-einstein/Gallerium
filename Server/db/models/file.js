@@ -7,10 +7,10 @@ const FileSchema = new Schema({
   remarks: {
     type: String
   },
-  album_id: {
-    type: Schema.Types.ObjectId,
-    ref: 'Album'
-  },
+  // album_id: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Album'
+  // },
   url: {
     type: String
   },

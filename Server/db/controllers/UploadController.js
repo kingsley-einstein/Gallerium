@@ -30,13 +30,12 @@ export class UploadController {
     try {
       const {body, files, query} = req;
       const {caption, remarks} = body;
-      const {user_id, album_id} = query;
+      const {user_id} = query;
       const fileArr = [];
       Array.from(files).forEach((file) => {
         const {url} = file;
         fileArr.push({
           user_id,
-          album_id,
           caption,
           remarks,
           url
@@ -87,29 +86,29 @@ export class UploadController {
     }
   }
 
-  async findByAlbum(req, res) {
-    try {
-      const {album_id} = req.query;
-      await Upload.find({album_id}, (err, uploads) => {
-        if (err) {
-          res.status(err.statusCode || 500).json({
-            status: err.statusCode || 500,
-            error: err.message
-          });
-        } else {
-          res.status(200).json({
-            status: 200,
-            data: uploads
-          });
-        }
-      });
-    } catch (err) {
-      res.status(err.statusCode || 500).json({
-        status: err.statusCode || 500,
-        error: err.message
-      });
-    }
-  }
+  // async findByAlbum(req, res) {
+  //   try {
+  //     const {album_id} = req.query;
+  //     await Upload.find({album_id}, (err, uploads) => {
+  //       if (err) {
+  //         res.status(err.statusCode || 500).json({
+  //           status: err.statusCode || 500,
+  //           error: err.message
+  //         });
+  //       } else {
+  //         res.status(200).json({
+  //           status: 200,
+  //           data: uploads
+  //         });
+  //       }
+  //     });
+  //   } catch (err) {
+  //     res.status(err.statusCode || 500).json({
+  //       status: err.statusCode || 500,
+  //       error: err.message
+  //     });
+  //   }
+  // }
 
   async getOne(req, res) {
     try {

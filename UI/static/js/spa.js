@@ -76,7 +76,9 @@ const router = new Router({
       renderingContext: document.getElementById('home'),
       hasScript: false,
       watchTag: 'home',
-      self: 'settings'
+      self: 'settings',
+      hasRequiredScript: true,
+      requiredScriptUrl: '/js/settings.js'
       // parentTag: 'app'
     }),
     new Route({

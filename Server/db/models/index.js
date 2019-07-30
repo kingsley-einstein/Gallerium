@@ -8,3 +8,4 @@ export {Follower} from './follower';
 export {Message} from './message';
 export {Text} from './text';
 export {Upload} from './file';
+export {Subscription} from './subscription';

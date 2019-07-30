@@ -5,8 +5,9 @@ import {
   UserController,
   // PictureController,
   // VideoController,
-  AlbumController,
-  UploadController
+  // AlbumController,
+  UploadController,
+  SubscriptionController
 } from './db/controllers';
 
 const router = Router();
@@ -15,8 +16,9 @@ const {authenticate} = new Passport();
 const userController = new UserController();
 // const pictureController = new PictureController();
 // const videoController = new VideoController();
-const albumController = new AlbumController();
+// const albumController = new AlbumController();
 const uploadController = new UploadController();
+const subscriptionController = new SubscriptionController();
 
 router.get('/', (req, res) => {
   res.status(200).json({
@@ -56,10 +58,12 @@ router.put('/users/:id', authenticate('jwt'), userController.update);
 // );
 
 // Album specific routes
-router.post('/album', authenticate('jwt'), albumController.create);
-router.get('/album/user', authenticate('jwt'), albumController.getAlbumsByUser);
-router.put('/album/:album_id', authenticate('jwt'), albumController.update);
-router.delete('/album/:album_id', authenticate('jwt'), albumController.delete);
+// router.post('/album', authenticate('jwt'), albumController.create);
+// router.get('/album/user', authenticate('jwt'),
+// albumController.getAlbumsByUser);
+// router.put('/album/:album_id', authenticate('jwt'), albumController.update);
+// router.delete('/album/:album_id', authenticate('jwt'),
+// albumController.delete);
 
 // Upload specific routes
 // router.post('/upload',
@@ -77,6 +81,16 @@ router.get(
     '/uploads/byid/:file_id',
     authenticate('jwt'),
     uploadController.getOne
+);
+router.post(
+    '/push/subscribe',
+    authenticate('jwt'),
+    subscriptionController.subscribe
+);
+router.delete(
+    '/push/unsubscribe',
+    authenticate('jwt'),
+    subscriptionController.unsubscribe
 );
 
 export default router;
