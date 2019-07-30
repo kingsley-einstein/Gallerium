@@ -13,5 +13,7 @@ export default class Environment {
     this.api_key = process.env.API_KEY;
     this.api_secret = process.env.API_SECRET;
     this.folder = process.env.FOLDER;
+    this.publicKey = process.env.VAPID_PUBLIC_KEY;
+    this.privateKey = process.env.VAPID_PRIVATE_KEY;
   }
 }
