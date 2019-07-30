@@ -43,3 +43,12 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(fetchResponse);
   }
 });
+
+self.addEventListener('push', (event) => {
+  const payload = JSON.parse(event.data.text());
+  event.waitUntil(
+      self.registration.showNotification(payload.title, {
+        body: payload.message
+      })
+  );
+});

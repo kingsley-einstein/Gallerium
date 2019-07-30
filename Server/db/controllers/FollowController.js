@@ -129,12 +129,15 @@ export class FollowController {
         });
       });
       const subscription = await new Promise((resolve, reject) => {
-        Subscription.findOne({
-          user_id: follow_id
-        }, (err, data) => {
-          if (err) reject(err);
-          resolve(data);
-        });
+        Subscription.findOne(
+            {
+              user_id: follow_id
+            },
+            (err, data) => {
+              if (err) reject(err);
+              resolve(data);
+            }
+        );
       });
       await Following.findOne({user_id}, (err, data) => {
         if (err) {
@@ -166,10 +169,13 @@ export class FollowController {
               auth,
               p256dh
             };
-            webpush.sendNotification({
-              keys,
-              endpoint
-            }, `${username} started following you`);
+            webpush.sendNotification(
+                {
+                  keys,
+                  endpoint
+                },
+                `${username} started following you`
+            );
           }
           res.status(200).json({
             status: 200,
@@ -180,28 +186,33 @@ export class FollowController {
           Following.create({
             user_id,
             following
-          }).then((d) => {
-            if (subscription) {
-              const {auth, p256dh, endpoint} = subscription;
-              const keys = {
-                auth,
-                p256dh
-              };
-              webpush.sendNotification({
-                keys,
-                endpoint
-              }, `${username} started following you`);
-            }
-            res.status(201).json({
-              status: 201,
-              data: 'You started following this person'
-            });
-          }).catch((err) => {
-            res.status(err.statusCode || 500).json({
-              status: err.statusCode || 500,
-              error: err.message
-            });
-          });
+          })
+              .then((d) => {
+                if (subscription) {
+                  const {auth, p256dh, endpoint} = subscription;
+                  const keys = {
+                    auth,
+                    p256dh
+                  };
+                  webpush.sendNotification(
+                      {
+                        keys,
+                        endpoint
+                      },
+                      `${username} started following you`
+                  );
+                }
+                res.status(201).json({
+                  status: 201,
+                  data: 'You started following this person'
+                });
+              })
+              .catch((err) => {
+                res.status(err.statusCode || 500).json({
+                  status: err.statusCode || 500,
+                  error: err.message
+                });
+              });
         }
       });
     } catch (err) {
