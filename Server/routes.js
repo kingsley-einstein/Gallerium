@@ -32,7 +32,7 @@ router.post('/auth/register', userController.create);
 router.post('/auth/login', userController.login);
 router.get('/users/:id', authenticate('jwt'), userController.findUserById);
 router.get(
-    '/users/search',
+    '/users/search/:search',
     authenticate('jwt'),
     userController.findUsersMatching
 );
@@ -88,7 +88,7 @@ router.post(
     subscriptionController.subscribe
 );
 router.delete(
-    '/push/unsubscribe',
+    '/push/unsubscribe/:user_id',
     authenticate('jwt'),
     subscriptionController.unsubscribe
 );

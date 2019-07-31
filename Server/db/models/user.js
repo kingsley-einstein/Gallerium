@@ -12,7 +12,9 @@ const UserSchema = new Schema(
         required: {
           message: 'Username is required'
         },
-        unique: true
+        unique: {
+          message: 'Username in use'
+        }
       },
       password: {
         type: String,

@@ -166,7 +166,6 @@ button {
   margin: 0;
   padding: 0;
   background: whitesmoke;
-  overflow: scroll;
   position: absolute;
   height: 100%;
   width: 100vw;
@@ -463,10 +462,10 @@ input:checked + .slider::before {
   border: none;
   background: whitesmoke;
   box-shadow: 1px 4px 2px silver;
-  z-index: 2;
   position: fixed;
+  z-index: 2;
   height: 100%;
-  right: -200px;
+  right: -400px;
   top: 0;
   bottom: 0;
   transition: all 500ms ease-in;
@@ -557,7 +556,12 @@ input:checked + .slider::before {
 .collection {
   display: flex;
   width: inherit;
-  overflow: scroll;
+}
+
+.collection.is-a-list {
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .collection.is-with-placeholder {
@@ -603,6 +607,13 @@ input:checked + .slider::before {
 .feed-item img.small {
   width: 20px;
   height: 20px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.search-list-item img {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 2px solid black;
 }
@@ -688,4 +699,21 @@ i.green {
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #dcdcdc;
+}
+
+.search-list-item {
+  display: flex;
+  padding: 12px;
+  flex-flow: row wrap;
+  border-bottom: 1px solid gainsboro;
+  justify-content: left;
+  width: 80%;
+}
+
+.inner-search-list-item {
+  display: flex;
+  padding-left: 2px;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  margin-left: 0.5em;
 }

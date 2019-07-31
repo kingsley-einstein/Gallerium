@@ -29,6 +29,7 @@ export class SubscriptionController {
           //   status: 200,
           //   data
           // });
+          console.log(data);
         });
       }
       await Subscription.create(body)
@@ -67,8 +68,8 @@ export class SubscriptionController {
 
   async unsubscribe(req, res) {
     try {
-      const {endpoint} = req.params;
-      await Subscription.findOneAndDelete({endpoint}, (err, data) => {
+      const {user_id} = req.params;
+      await Subscription.findOneAndDelete({user_id}, (err, data) => {
         if (err) {
           res.status(err.statusCode || 500).json({
             status: err.statusCode || 500,
@@ -76,12 +77,10 @@ export class SubscriptionController {
           });
           return;
         }
-        if (data) {
-          res.status(200).json({
-            status: 200,
-            data: 'Successfully unsubscribed from receiving push notifications'
-          });
-        }
+        res.status(200).json({
+          status: 200,
+          data: 'Successfully unsubscribed from receiving push notifications'
+        });
       });
     } catch (err) {
       res.status(err.statusCode || 500).json({

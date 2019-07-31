@@ -113,7 +113,7 @@ export class UploadController {
   async getOne(req, res) {
     try {
       const {file_id} = req.params;
-      await Upload.findById(file_id, (err, upload) => {
+      await Upload.findById(file_id, (err, data) => {
         if (err) {
           res.status(err.statusCode || 500).json({
             status: err.statusCode || 500,
@@ -122,7 +122,7 @@ export class UploadController {
         } else {
           res.status(200).json({
             status: 200,
-            data: upload
+            data
           });
         }
       });

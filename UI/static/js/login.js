@@ -4,6 +4,7 @@
   const spinner = document.getElementById('spinner');
   const alert = document.getElementById('alert');
   const alertText = document.getElementById('alert-text');
+  const actionBtn = document.getElementById('action');
   const submit = async (data) => {
     const send = await fetch('/api/v1/auth/login', {
       method: 'POST',
@@ -65,5 +66,10 @@
         });
     event.preventDefault();
     loginForm.reset();
+  });
+  actionBtn.addEventListener('click', (event) => {
+    if (alert.classList.contains('show')) {
+      alert.classList.remove('show');
+    }
   });
 })();
