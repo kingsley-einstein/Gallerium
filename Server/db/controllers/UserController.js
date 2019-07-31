@@ -95,9 +95,9 @@ export class UserController {
 
   async findUsersMatching(req, res) {
     try {
-      const {search} = req.query;
+      const {search} = req.params;
       await User.find({username: {$regex: search, $options: 'i'}}).exec(
-          (err, docs) => {
+          (err, data) => {
             if (err) {
               res.status(500).json({
                 status: 500,
@@ -106,7 +106,7 @@ export class UserController {
             } else {
               res.status(200).json({
                 status: 200,
-                data: docs
+                data
               });
             }
           }

@@ -76,6 +76,24 @@
           console.log(err);
         });
   };
+  const deleteSubscription = async () => {
+    await fetch(`/api/v1/push/unsubscribe/${localStorage.getItem('id')}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
   /**
    *
    * @param {PushManager} pushManager
@@ -84,6 +102,7 @@
     pushManager.getSubscription().then((subscription) => {
       if (subscription) {
         subscription.unsubscribe();
+        deleteSubscription();
       }
     });
   };
@@ -93,28 +112,26 @@
    */
   const addCheckEvent = (pushManager) => {
     notifCheck.addEventListener('click', (event) => {
-      setTimeout(() => {
-        if (notifCheck.checked) {
-          console.log('Checked');
-          Notification.requestPermission().then((permission) => {
-            if (permission === 'granted') {
-              pushManager
-                  .subscribe({
-                    userVisibleOnly: true,
-                    applicationServerKey: vapidToUint8Array(vapidPublicKey)
-                  })
-                  .then((subscription) => {
-                    subscribe(subscription);
-                  });
-            } else {
-              notifCheck.checked = false;
-            }
-          });
-        } else {
-          console.log('Not checked');
-          unsubscribe(pushManager);
-        }
-      }, 1000);
+      if (notifCheck.checked) {
+        console.log('Checked');
+        Notification.requestPermission().then((permission) => {
+          if (permission === 'granted') {
+            pushManager
+                .subscribe({
+                  userVisibleOnly: true,
+                  applicationServerKey: vapidToUint8Array(vapidPublicKey)
+                })
+                .then((subscription) => {
+                  subscribe(subscription);
+                });
+          } else {
+            notifCheck.checked = false;
+          }
+        });
+      } else {
+        console.log('Not checked');
+        unsubscribe(pushManager);
+      }
     });
   };
   // pushManager.getSubscription().then((subscription) => {
@@ -123,7 +140,7 @@
   //   }
   //   addCheckEvent(subscription);
   // });
-  const registerPush = () => {
+  const checkPush = () => {
     if (navigator.serviceWorker) {
       navigator.serviceWorker.getRegistration().then((reg) => {
         console.log(reg);
@@ -131,13 +148,11 @@
         pushManager.getSubscription().then((subscription) => {
           if (subscription) {
             notifCheck.checked = true;
-          } else {
-            notifCheck.checked = false;
           }
         });
         addCheckEvent(pushManager);
       });
     }
   };
-  registerPush();
+  checkPush();
 })();
