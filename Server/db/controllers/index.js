@@ -4,3 +4,4 @@ export {VideoController} from './VideoController';
 export {AlbumController} from './AlbumController';
 export {UploadController} from './UploadController';
 export {SubscriptionController} from './SubscriptionController';
+export {LikeController} from './LikeController';
