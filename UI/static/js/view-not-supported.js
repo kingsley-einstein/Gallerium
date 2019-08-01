@@ -4,7 +4,7 @@ window.addEventListener('load', (event) => {
   }
 });
 
-window.addEventListener('load', (event) => {
+window.addEventListener('hashchange', (event) => {
   if (window.screen.width <= 500) {
     location.assign('/');
   }
