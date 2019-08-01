@@ -1,0 +1,20 @@
+@font-face {
+  src: url('/fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype');
+  font-family: 'Open Sans';  
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5em;
+  font-size: 30px;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+}

@@ -64,7 +64,7 @@
           const div3 = document.createElement('div');
           div3.textContent = item.username;
           const div4 = document.createElement('div');
-          const emphasis = document.createElement('cite');
+          const emphasis = document.createElement('address');
           emphasis.textContent = `${item.first_name} ${item.last_name}`;
           div4.appendChild(emphasis);
           div2.appendChild(div3);

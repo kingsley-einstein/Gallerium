@@ -38,5 +38,8 @@ export class Pages {
     app.get('/search', (req, res) => {
       res.sendFile(join(__dirname, '../../UI/views/search.html'));
     });
+    app.get('/unsupported-view', (req, res) => {
+      res.sendFile(join(__dirname, '../../UI/views/view-not-supported.html'));
+    });
   }
 }
