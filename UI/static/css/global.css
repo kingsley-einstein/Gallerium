@@ -618,6 +618,13 @@ input:checked + .slider::before {
   border: 2px solid black;
 }
 
+.user-area img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
 .collection.is-grid-of-images img {
   width: inherit;
   height: inherit;
@@ -716,4 +723,11 @@ i.green {
   flex-flow: column wrap;
   justify-content: flex-start;
   margin-left: 0.5em;
+}
+
+.user-area {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0.5em;
+  margin-top: 0.5em;
 }
