@@ -40,28 +40,28 @@ export class UserController {
   async login(req, res) {
     try {
       const {username, password} = req.body;
-      await User.findOne({username}, (err, doc) => {
+      await User.findOne({username}, (err, data) => {
         // console.log(username);
         // console.log(doc);
-        if (!doc) {
+        if (!data) {
           res.status(404).json({
             status: 404,
             error: 'User not found'
           });
         } else {
-          if (comparators.comparePassword(password, doc.password)) {
-            const {username, password} = doc;
-            doc.token = sign({username, password}, secretOrKey, {
+          if (comparators.comparePassword(password, data.password)) {
+            const {username, password} = data;
+            data.token = sign({username, password}, secretOrKey, {
               expiresIn: '14d'
             });
-            doc.save();
+            data.save();
             res.status(200).json({
               status: 200,
-              data: doc
+              data
             });
           } else {
-            res.status(401).json({
-              status: 401,
+            res.status(400).json({
+              status: 400,
               error: 'Incorrect password'
             });
           }
@@ -78,11 +78,11 @@ export class UserController {
   async findUserById(req, res) {
     try {
       const {id} = req.params;
-      await User.findById(id, (err, doc) => {
+      await User.findById(id, (err, data) => {
         if (err) throw err;
         res.status(200).json({
           status: 200,
-          data: doc
+          data
         });
       });
     } catch (err) {
@@ -123,7 +123,7 @@ export class UserController {
     try {
       const {body, params} = req;
       const {id} = params;
-      await User.findByIdAndUpdate(id, body, (err, user) => {
+      await User.findByIdAndUpdate(id, body, (err, data) => {
         if (err) {
           res.status(err.statusCode || 500).json({
             status: err.statusCode || 500,
@@ -132,7 +132,7 @@ export class UserController {
         } else {
           res.status(200).json({
             status: 200,
-            data: user
+            data
           });
         }
       });
