@@ -117,6 +117,14 @@ const router = new Router({
       self: 'search',
       hasRequiredScript: true,
       requiredScriptUrl: '/js/search.js'
+    }),
+    new Route({
+      url: '/profile-of-other-user',
+      hasDefault: false,
+      renderingContext: document.getElementById('home'),
+      watchTag: 'home',
+      self: 'profile_of_other_user',
+      hasRequiredScript: false
     })
   ],
   default: '#landing'

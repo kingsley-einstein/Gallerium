@@ -41,5 +41,8 @@ export class Pages {
     app.get('/unsupported-view', (req, res) => {
       res.sendFile(join(__dirname, '../../UI/views/view-not-supported.html'));
     });
+    app.get('/profile-of-other-user', (req, res) => {
+      res.sendFile(join(__dirname, '../../UI/views/profile-of-others.html'));
+    });
   }
 }

@@ -84,6 +84,11 @@ router.get(
     authenticate('jwt'),
     uploadController.getOne
 );
+router.get(
+    '/uploads/:user_id/limit',
+    authenticate('jwt'),
+    uploadController.findAndLimit
+);
 
 // Push subscription routes
 router.post(
