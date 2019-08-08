@@ -253,4 +253,101 @@ export class FollowController {
       });
     }
   }
+
+  async findFollowing(req, res) {
+    try {
+      const {user_id} = req.params;
+      await Following.findOne({user_id}, (err, data) => {
+        if (err) {
+          res.status(err.statusCode || 500).json({
+            status: err.statusCode || 500,
+            error: err.message
+          });
+          return;
+        }
+        res.status(200).json({
+          status: 200,
+          data
+        });
+      });
+    } catch (err) {
+      res.status(err.statusCode || 500).json({
+        status: err.statusCode || 500,
+        error: err.message
+      });
+    }
+  }
+
+  async findFollowers(req, res) {
+    try {
+      const {user_id} = req.params;
+      await Following.find({following: user_id}, (err, data) => {
+        if (err) {
+          res.status(err.statusCode || 500).json({
+            status: err.statusCode || 500,
+            error: err.message
+          });
+          return;
+        }
+        res.status(200).json({
+          status: 200,
+          data
+        });
+      });
+    } catch (err) {
+      res.status(err.statusCode || 500).json({
+        status: err.statusCode || 500,
+        error: err.message
+      });
+    }
+  }
+
+  async countFollowers(req, res) {
+    try {
+      const {user_id} = req.params;
+      await Following.count({following: user_id}, (err, data) => {
+        if (err) {
+          res.status(500).json({
+            status: 500,
+            error: err.message
+          });
+          return;
+        }
+        res.status(200).json({
+          status: 200,
+          data
+        });
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
+
+  async countFollowing(req, res) {
+    try {
+      const {user_id} = req.params;
+      await Following.findOne({user_id}, (err, doc) => {
+        if (err) {
+          res.status(500).json({
+            status: 500,
+            error: err.message
+          });
+          return;
+        }
+        const data = doc.following.length;
+        res.status(200).json({
+          status: 200,
+          data
+        });
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
 }

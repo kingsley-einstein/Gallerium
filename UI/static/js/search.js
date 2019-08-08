@@ -21,6 +21,9 @@
     });
     return send;
   };
+  const goToProfile = (id) => {
+    location.assign(`#profile-of-other-user?user_id=${id}`);
+  };
   const getImage = async ({pic}, img) => {
     await fetch(`/api/v1/uploads/byid/${pic}`, {
       method: 'GET',
@@ -71,6 +74,9 @@
           div2.appendChild(div4);
           searchListItem.appendChild(div1);
           searchListItem.appendChild(div2);
+          searchListItem.addEventListener('click', (event) => {
+            goToProfile(item._id);
+          });
           searchResultParent.appendChild(searchListItem);
         });
       } else {

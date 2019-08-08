@@ -56,4 +56,52 @@ export class LikeController {
       });
     }
   }
+
+  async unlike(req, res) {
+    try {
+      const {liked_by, upload_id} = req.query;
+      await Like.findOneAndDelete({liked_by, upload_id}, (err, data) => {
+        if (err) {
+          res.status(err.statusCode || 500).json({
+            status: err.statusCode || 500,
+            error: err.message
+          });
+          return;
+        }
+        res.status(200).json({
+          status: 200,
+          data
+        });
+      });
+    } catch (err) {
+      res.status(err.statusCode || 500).json({
+        status: err.statusCode || 500,
+        error: err.message
+      });
+    }
+  }
+
+  async countLikes(req, res) {
+    try {
+      const {upload_id} = req.params;
+      await Like.count({upload_id}, (err, data) => {
+        if (err) {
+          res.status(err.statusCode || 500).json({
+            status: err.statusCode || 500,
+            error: err.message
+          });
+          return;
+        }
+        res.status(200).json({
+          status: 200,
+          data
+        });
+      });
+    } catch (err) {
+      res.status(err.statusCode || 500).json({
+        status: err.statusCode || 500,
+        error: err.message
+      });
+    }
+  }
 }

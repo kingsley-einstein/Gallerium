@@ -7,7 +7,9 @@ import {
   // VideoController,
   // AlbumController,
   UploadController,
-  SubscriptionController
+  SubscriptionController,
+  LikeController,
+  FollowController
 } from './db/controllers';
 
 const router = Router();
@@ -19,6 +21,8 @@ const userController = new UserController();
 // const albumController = new AlbumController();
 const uploadController = new UploadController();
 const subscriptionController = new SubscriptionController();
+const likeController = new LikeController();
+const followController = new FollowController();
 
 router.get('/', (req, res) => {
   res.status(200).json({
@@ -82,6 +86,13 @@ router.get(
     authenticate('jwt'),
     uploadController.getOne
 );
+router.get(
+    '/uploads/:user_id/limit',
+    authenticate('jwt'),
+    uploadController.findAndLimit
+);
+
+// Push subscription routes
 router.post(
     '/push/subscribe',
     authenticate('jwt'),
@@ -91,6 +102,23 @@ router.delete(
     '/push/unsubscribe/:user_id',
     authenticate('jwt'),
     subscriptionController.unsubscribe
+);
+
+// Like specific routes
+router.post('/like/:user_id', authenticate('jwt'), likeController.like);
+router.delete('/unlike', authenticate('jwt'), likeController.unlike);
+router.get(
+    '/likes/count/:upload_id',
+    authenticate('jwt'),
+    likeController.countLikes
+);
+
+// Follow routes
+router.post('/follow', authenticate('jwt'), followController.follow);
+router.put(
+    '/unfollow/:user_id/:follow_id',
+    authenticate('jwt'),
+    followController.unfollow
 );
 
 export default router;
