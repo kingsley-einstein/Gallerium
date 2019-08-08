@@ -8,7 +8,8 @@ import {
   // AlbumController,
   UploadController,
   SubscriptionController,
-  LikeController
+  LikeController,
+  FollowController
 } from './db/controllers';
 
 const router = Router();
@@ -21,6 +22,7 @@ const userController = new UserController();
 const uploadController = new UploadController();
 const subscriptionController = new SubscriptionController();
 const likeController = new LikeController();
+const followController = new FollowController();
 
 router.get('/', (req, res) => {
   res.status(200).json({
@@ -103,20 +105,20 @@ router.delete(
 );
 
 // Like specific routes
-router.post(
-    '/like/:user_id',
-    authenticate('jwt'),
-    likeController.like
-);
-router.delete(
-    '/unlike',
-    authenticate('jwt'),
-    likeController.unlike
-);
+router.post('/like/:user_id', authenticate('jwt'), likeController.like);
+router.delete('/unlike', authenticate('jwt'), likeController.unlike);
 router.get(
-    '/count/:upload_id',
+    '/likes/count/:upload_id',
     authenticate('jwt'),
     likeController.countLikes
+);
+
+// Follow routes
+router.post('/follow', authenticate('jwt'), followController.follow);
+router.put(
+    '/unfollow/:user_id/:follow_id',
+    authenticate('jwt'),
+    followController.unfollow
 );
 
 export default router;
