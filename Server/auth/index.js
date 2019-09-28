@@ -1,1 +1,0 @@
-export {Passport} from './passport';
