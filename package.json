@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node Server/index",
+    "build": "babel src/Server -d src/build",
+    "start:dev": "set NODE_ENV=development&&nodemon --exec babel-node src/Server/index",
     "lint": "eslint **/**/*.js --fix",
     "prettify:scripts": "prettier-eslint **/**/*.{js,json} --write",
     "prettify:styles": "prettier-stylelint **/**/*.css --write",

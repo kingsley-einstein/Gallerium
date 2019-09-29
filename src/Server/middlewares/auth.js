@@ -1,4 +1,6 @@
 import jwt from 'jsonwebtoken';
+import {Keys} from '../helpers';
+import env from '../env';
 import db from '../db';
 
 const {models: {
@@ -16,7 +18,7 @@ export class Auth {
    * @param {Response} res
    * @param {*} next
    */
-  async checkToken(req, res, next) {
+  static async checkToken(req, res, next) {
     const {authorization} = req.headers;
     if (!authorization) {
       res.status(400).json({
@@ -34,7 +36,7 @@ export class Auth {
       return;
     }
     const validToken = await new Promise((resolve) => {
-      jwt.verify(token, '', null, (err, decoded) => {
+      jwt.verify(token, env.jwt_secret, null, (err, decoded) => {
         resolve(decoded);
       });
     });
@@ -73,5 +75,36 @@ export class Auth {
         error: 'Unable to authenticate'
       });
     }
+  }
+
+  /**
+   *
+   * @param {Request} req
+   * @param {Response} res
+   * @param {*} next
+   */
+  static checkBody(req, res, next) {
+    const {body} = req;
+    const requiredKeys = ['username', 'password', 'phone_number'];
+    if (!Keys.contains(body, requiredKeys)) {
+      res.status(400).json({
+        status: 400,
+        error: `Missing required keys ${Keys.missing(body, requiredKeys)}`
+      });
+      return;
+    }
+    const keysMatchTypes = Keys.keysAreOfTypes(body, {
+      username: 'string',
+      password: 'string',
+      phone_number: 'string'
+    });
+    if (!keysMatchTypes) {
+      res.status(400).json({
+        status: 400,
+        error: 'Certain body params are invalid'
+      });
+      return;
+    }
+    next();
   }
 }
