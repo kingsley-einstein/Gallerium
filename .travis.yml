@@ -3,6 +3,9 @@ node_js:
   - "stable"
 services:
   - mongodb
+cache:
+  directories:
+    - "node_modules"
 env:
   - MONGO_TEST_URI=mongodb://127.0.0.1:27017/galtestdb
   - JWT_SECRET=s3cr3tly
