@@ -9,8 +9,6 @@ install:
   - npm install
 before_script:
   - sleep 15
-  - mongo galtestdb
-  - exit
 script:
   - npm run test:travis
 after_success:
