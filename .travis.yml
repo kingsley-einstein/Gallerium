@@ -4,7 +4,7 @@ node_js:
 services:
   - mongodb
 env:
-  - MONGO_TEST_URI=127.0.0.1:27017/galtestdb
+  - MONGO_TEST_URI=mongodb://127.0.0.1:27017/galtestdb
 install:
   - npm install
 before_script:
