@@ -5,6 +5,8 @@ services:
   - mongodb
 env:
   - MONGO_TEST_URI=mongodb://127.0.0.1:27017/galtestdb
+  - JWT_SECRET=s3cr3tly
+  - PORT=5679
 install:
   - npm install
 before_script:
