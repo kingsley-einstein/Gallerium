@@ -12,6 +12,9 @@
   "rules": {
     "linebreak-style": "off",
     "comma-dangle": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "max-len": "off",
+    "new-cap": "off",
+    "indent": "off"
   }
 }

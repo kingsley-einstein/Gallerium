@@ -20,4 +20,11 @@ const ProfileSchema = new Schema({
 
 const Profile = mongoose.model('Profile', ProfileSchema);
 
+Profile.updateByOwner = (owner, update) => Profile.findOneAndUpdate({
+  owner
+}, update, {
+  useFindAndModify: false,
+  new: true
+});
+
 export default Profile;

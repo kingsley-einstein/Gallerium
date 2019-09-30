@@ -6,6 +6,9 @@ const UserSchema = new Schema({
     type: String,
     required: {
       message: 'Username is required'
+    },
+    unique: {
+      message: 'Username already in use'
     }
   },
   password: {
@@ -36,12 +39,12 @@ UserSchema.pre('save', function(next) {
 
 const User = mongoose.model('User', UserSchema);
 
-User.findByUsername = (username, cb) => User.findOne({
+User.findByUsername = (username) => User.findOne({
   username
-}, cb);
+});
 
-User.findByPhoneNumber = (phone_number, cb) => User.findOne({
+User.findByPhoneNumber = (phone_number) => User.findOne({
   phone_number
-}, cb);
+});
 
 export default User;

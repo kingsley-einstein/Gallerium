@@ -1,0 +1,18 @@
+language: node_js
+node_js: 
+  - "stable"
+services:
+  - mongodb
+cache:
+  directories:
+    - "node_modules"
+env:
+  - MONGO_TEST_URI=mongodb://127.0.0.1:27017/galtestdb JWT_SECRET=s3cr3tly
+install:
+  - npm install
+before_script:
+  - sleep 15
+script:
+  - npm run test:travis
+after_success:
+  - npm run coverage
