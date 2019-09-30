@@ -183,8 +183,8 @@ export default class UserController {
 
   /**
    *
-   * @param {Request} req 
-   * @param {Response} res 
+   * @param {Request} req
+   * @param {Response} res
    */
   static async logout(req, res) {
     try {

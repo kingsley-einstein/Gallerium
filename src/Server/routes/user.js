@@ -26,4 +26,10 @@ router.put(
   UserController.update
 );
 
+router.post(
+  '/auth/logout',
+  Auth.checkToken,
+  UserController.logout
+);
+
 export default router;

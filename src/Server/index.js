@@ -12,10 +12,11 @@ const appOpts = {
 
 configure(app, appOpts);
 
-const {port, mongo_dev_uri, mongo_prod_uri, node_env} = env;
+const {port, mongo_dev_uri, mongo_prod_uri, mongo_test_uri, node_env} = env;
 const mongo_uris = {
   development: mongo_dev_uri,
-  production: mongo_prod_uri
+  production: mongo_prod_uri,
+  test: mongo_test_uri
 };
 const MONGO_URI = mongo_uris[node_env];
 const mongo_opts = {
@@ -35,3 +36,5 @@ mongoose.connect(MONGO_URI, mongo_opts, (error) => {
     console.log(`Server listening on ${port}`);
   });
 });
+
+export default app;
