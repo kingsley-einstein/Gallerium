@@ -3,6 +3,7 @@ pipeline {
   environment {
     MONGO_TEST_URI = "127.0.0.1:27017/jenkinsgaldb"
     NODE_ENV = "test"
+    JWT_SECRET = "s3cr3tly"
   }
   stages {
     stage('Connect to database') {
