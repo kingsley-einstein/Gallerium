@@ -16,4 +16,16 @@ router.put(
   ProfileController.update
 );
 
+router.get(
+  '/profile',
+  Auth.checkToken,
+  ProfileController.getUserProfile
+);
+
+router.get(
+  '/profile/:user_id',
+  Auth.checkToken,
+  ProfileController.getAnotherUserProfile
+);
+
 export default router;

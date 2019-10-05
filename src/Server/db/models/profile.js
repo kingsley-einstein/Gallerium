@@ -20,6 +20,10 @@ const ProfileSchema = new Schema({
 
 const Profile = mongoose.model('Profile', ProfileSchema);
 
+Profile.findByOwner = (owner) => Profile.findOne({
+  owner
+});
+
 Profile.updateByOwner = (owner, update) => Profile.findOneAndUpdate({
   owner
 }, update, {
