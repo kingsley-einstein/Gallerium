@@ -9,9 +9,9 @@ const {models: {
  */
 export default class ProfileController {
   /**
-   * 
-   * @param {Request} req 
-   * @param {Response} res 
+   *
+   * @param {Request} req
+   * @param {Response} res
    */
   static async create(req, res) {
     try {
@@ -35,15 +35,65 @@ export default class ProfileController {
   }
 
   /**
-   * 
-   * @param {Request} req 
-   * @param {Response} res 
+   *
+   * @param {Request} req
+   * @param {Response} res
    */
   static async update(req, res) {
     try {
       const {user, body} = req;
       const data = await new Promise((resolve) => {
         Profile.updateByOwner(user._id, body).then((profile) => {
+          resolve(profile);
+        });
+      });
+      res.status(200).json({
+        status: 200,
+        data
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error
+      });
+    }
+  }
+
+  /**
+   *
+   * @param {Request} req
+   * @param {Response} res
+   */
+  static async getUserProfile(req, res) {
+    try {
+      const {user} = req;
+      const data = await new Promise((resolve) => {
+        Profile.findByOwner(user._id).then((profile) => {
+          resolve(profile);
+        });
+      });
+      res.status(200).json({
+        status: 200,
+        data
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error
+      });
+    }
+  }
+
+  /**
+   *
+   * @param {Request} req
+   * @param {Response} res
+   */
+  static async getAnotherUserProfile(req, res) {
+    try {
+      const {user_id} = req.params;
+      const data = await new Promise((resolve) => {
+        Profile.findByOwner(user_id).then((profile) => {
           resolve(profile);
         });
       });

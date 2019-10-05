@@ -22,8 +22,8 @@ const SubscriptionSchema = new Schema({
 
 const Subscription = mongoose.model('Subscription', SubscriptionSchema);
 
-Subscription.findBySubscriber = (subscriber, cb) => Subscription.findOne({
+Subscription.findBySubscriber = (subscriber) => Subscription.findOne({
   subscriber
-}, cb);
+});
 
 export default Subscription;
