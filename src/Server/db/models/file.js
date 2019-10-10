@@ -10,6 +10,9 @@ const FileSchema = new Schema({
   bytes: {
     type: String
   },
+  mimeType: {
+    type: String
+  },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -19,5 +22,19 @@ const FileSchema = new Schema({
 });
 
 const FileItem = mongoose.model('File', FileSchema);
+
+FileItem.findAllByOwner = (owner) => FileItem.find({
+  owner
+});
+
+FileItem.deleteByOwner = (owner) => FileItem.deleteMany({
+  owner
+});
+
+FileItem.deleteByOwnerAndId = (owner, _id) => FileItem.deleteOne({
+  owner,
+  _id
+});
+
 
 export default FileItem;

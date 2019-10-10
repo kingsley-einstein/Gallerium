@@ -12,7 +12,10 @@ const ProfileSchema = new Schema({
   },
   owner: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    unique: {
+      message: 'User already has a profile'
+    }
   }
 }, {
   timestamps: true

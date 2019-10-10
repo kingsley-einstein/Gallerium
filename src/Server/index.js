@@ -38,8 +38,8 @@ mongoose.connect(MONGO_URI, mongo_opts, (error) => {
       error
     }));
   }
-  app.listen(port, () => {
-    console.log(`Server listening on ${port}`);
+  app.listen(port[node_env], () => {
+    console.log(`Server listening on ${port[node_env]}`);
   });
 });
 
