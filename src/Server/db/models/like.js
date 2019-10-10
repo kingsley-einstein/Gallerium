@@ -23,4 +23,9 @@ Like.countByFile = (file) => Like.count({
   file
 });
 
+Like.deleteByLikedByAndFile = (likedBy, file) => Like.deleteOne({
+  likedBy,
+  file
+});
+
 export default Like;

@@ -31,8 +31,11 @@ Subscription.deleteBySubscriber = (subscriber) => Subscription.delete({
   subscriber
 });
 
-Subscription.editBySubscriber = (subscriber, update) => Subscription.update({
+Subscription.editBySubscriber = (subscriber, update) => Subscription.findOneAndUpdate({
   subscriber
-}, update);
+}, update, {
+  new: true,
+  useFindAndModify: false
+});
 
 export default Subscription;

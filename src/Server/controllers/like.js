@@ -54,5 +54,33 @@ export default class LikeController {
       });
     }
   }
+
+  /**
+   *
+   * @param {Request} req
+   * @param {Response} res
+   */
+  static async unlike(req, res) {
+    try {
+      const {user, params} = req;
+      const isDeleted = await new Promise((resolve) => {
+        Like.deleteByLikedByAndFile(user._id, params.file_id).then((ok) => {
+          resolve(ok);
+        });
+      });
+      if (!isDeleted) {
+        res.status(500).json({
+          status: 500,
+          error: 'Could not unlike'
+        });
+        return;
+      }
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error
+      });
+    }
+  }
 }
 

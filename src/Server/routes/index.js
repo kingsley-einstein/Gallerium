@@ -2,6 +2,7 @@ import {Router} from 'express';
 import AuthRouter from './user';
 import ProfileRouter from './profile';
 import FileRouter from './file';
+import LikeRouter from './like';
 
 const router = Router();
 
@@ -15,5 +16,6 @@ router.get('/', (req, res) => {
 router.use('/', AuthRouter);
 router.use('/', ProfileRouter);
 router.use('/', FileRouter);
+router.use('/', LikeRouter);
 
 export default router;
