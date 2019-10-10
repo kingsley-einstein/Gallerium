@@ -16,7 +16,8 @@ const SubscriptionSchema = new Schema({
   subscriber: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
+    unique: true
   }
 });
 
@@ -25,5 +26,13 @@ const Subscription = mongoose.model('Subscription', SubscriptionSchema);
 Subscription.findBySubscriber = (subscriber) => Subscription.findOne({
   subscriber
 });
+
+Subscription.deleteBySubscriber = (subscriber) => Subscription.delete({
+  subscriber
+});
+
+Subscription.editBySubscriber = (subscriber, update) => Subscription.update({
+  subscriber
+}, update);
 
 export default Subscription;
