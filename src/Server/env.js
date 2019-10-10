@@ -14,7 +14,10 @@ const keys = {
     development: env.PORT_DEV,
     test: env.PORT_TEST
   },
-  node_env: env.NODE_ENV
+  node_env: env.NODE_ENV,
+  push_public_key: env.PUSH_PUBLIC_KEY,
+  push_private_key: env.PUSH_PRIVATE_KEY,
+  mailto: env.MAILTO
 };
 
 export default keys;

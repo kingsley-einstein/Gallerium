@@ -4,6 +4,7 @@ import FileItem from './file';
 import Blacklist from './blacklist';
 import Subscription from './subscription';
 import Like from './like';
+import Notification from './notification';
 
 const models = {
   User,
@@ -11,7 +12,8 @@ const models = {
   FileItem,
   Blacklist,
   Subscription,
-  Like
+  Like,
+  Notification
 };
 
 export default models;
