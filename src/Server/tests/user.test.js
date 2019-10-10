@@ -89,11 +89,8 @@ describe('USER tests', () => {
     });
   });
   after((done) => {
-    User.deleteOne({
-      username: 'jake'
-    })
-      .then(() => {
-        done();
-      });
+    User.deleteMany().then(() => {
+      done();
+    });
   });
 });
