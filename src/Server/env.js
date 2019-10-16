@@ -12,7 +12,8 @@ const keys = {
   mongo_test_uri: env.MONGO_TEST_URI,
   port: {
     development: env.PORT_DEV,
-    test: env.PORT_TEST
+    test: env.PORT_TEST,
+    production: env.PORT
   },
   node_env: env.NODE_ENV,
   push_public_key: env.PUSH_PUBLIC_KEY,

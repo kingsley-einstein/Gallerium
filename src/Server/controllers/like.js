@@ -4,7 +4,8 @@ import {notify} from '../helpers';
 const {
   models: {
     Like,
-    Subscription
+    Subscription,
+    Notification
   }
 } = db;
 
@@ -29,6 +30,13 @@ export default class LikeController {
             resolve(doc);
           });
       });
+      Notification.create({
+        owner: file.owner,
+        message: `${user.username} liked your upload: ${file.caption}`
+      })
+        .then((d) => {
+          console.log('New notification created');
+        });
       const subscription = await new Promise((resolve) => {
         Subscription.findBySubscriber(file.owner).then((item) => {
           resolve(item);

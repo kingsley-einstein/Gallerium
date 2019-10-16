@@ -8,8 +8,8 @@ Router.prototype = {
   },
   watchHashChange() {
     window.addEventListener('hashchange', (event) => {
-      const route = this.routes[event.newURL.split('#')[1]];
-      const oldRoute = this.routes[event.oldURL.split('#')[1]];
+      const route = this.routes[event.newURL.split('#')[1].split('?')[0]];
+      const oldRoute = this.routes[event.oldURL.split('#')[1].split('?')[0]];
       route.render();
       route.setActiveState(event.newURL.split('#')[1]);
       if (route.script) {

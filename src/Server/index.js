@@ -1,7 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import io from 'socket.io';
 import env from './env';
 import configure from './config';
+import {Socket} from './helpers';
 
 const app = express();
 const appOpts = {
@@ -38,7 +40,9 @@ mongoose.connect(MONGO_URI, mongo_opts, (error) => {
       error
     }));
   }
-  app.listen(port[node_env], () => {
+  const server = app.listen(port[node_env], () => {
+    const IO = io(server);
+    Socket.wire(IO);
     console.log(`Server listening on ${port[node_env]}`);
   });
 });
