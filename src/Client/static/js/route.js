@@ -1,16 +1,3 @@
-let scriptId = '';
-
-/**
- *@description Generate random script id
- */
-function generateScriptId() {
-  scriptId = '';
-  const possible = ['A', 'B', 'C', 'D', 'E', '1', '2', '3', '4', '5'];
-  for (let i = 0; i < possible.length; i++) {
-    scriptId += possible[Math.floor(Math.random() * i)];
-  }
-}
-
 Route.prototype = {
   url: null,
   context: 'app',
@@ -19,6 +6,7 @@ Route.prototype = {
   isParent: false,
   isActive: false,
   keyword: '',
+  scriptId: '',
   /**
    *
    * @param {{}} config
@@ -40,16 +28,21 @@ Route.prototype = {
       });
   },
   loadScript() {
-    generateScriptId();
+    if (this.scriptId.length > 0) {
+      this.unloadScript();
+    }
+    this.generateScriptId();
     const script = document.createElement('script');
-    script.id = scriptId;
+    script.id = this.scriptId;
     script.src = this.script;
     script.defer = true;
     document.body.appendChild(script);
   },
   unloadScript() {
-    const script = document.getElementById(scriptId);
-    script.remove();
+    const script = document.getElementById(this.scriptId);
+    if (script) {
+      document.body.removeChild(script);
+    }
   },
   /**
    *
@@ -58,6 +51,13 @@ Route.prototype = {
   setActiveState(activeUrl) {
     const splitUrl = activeUrl.split('/');
     this.isActive = splitUrl.indexOf(this.keyword) !== -1;
+  },
+  generateScriptId() {
+    this.scriptId = '';
+    const possible = ['A', 'B', 'C', 'D', 'E', '1', '2', '3', '4', '5', '$', '+', '-', '^', 'a', 'b', 'c', 'd', 'e'];
+    for (let i = 0; i < possible.length; i++) {
+      this.scriptId += possible[Math.floor(Math.random() * i)];
+    }
   }
 };
 

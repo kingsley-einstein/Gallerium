@@ -21,7 +21,8 @@ new Router({
     context: 'app',
     isParent: true,
     keyword: 'home',
-    defaultUrl: '/home/feeds'
+    defaultUrl: '/home/feeds',
+    script: '/js/home.js'
   }),
   '/home/feeds': new Route({
     url: '/home/feeds',

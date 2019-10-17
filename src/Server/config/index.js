@@ -2,6 +2,7 @@ import path from 'path';
 import {cors} from '../middlewares';
 import env from '../env';
 import MainRouter from '../routes';
+import pager from '../client';
 
 export default (app, {statics, json, urlencoded}) => {
   const isDevelopment = env.node_env === 'development';
@@ -19,4 +20,5 @@ export default (app, {statics, json, urlencoded}) => {
     }
   }));
   app.use('/api/v1', MainRouter);
+  pager(app);
 };
