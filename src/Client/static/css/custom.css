@@ -30,6 +30,11 @@ body {
   padding: 0;
 }
 
+* {
+  transition: all 0.5s linear;
+}
+
+
 .marginize-top {
   margin-top: 20%;
 }
@@ -39,6 +44,7 @@ body {
   top: 0;
   right: 0;
   left: 0;
+  z-index: 2;
 }
 
 .footer {
@@ -46,11 +52,31 @@ body {
   bottom: 0;
   right: 0;
   left: 0;
+  z-index: 2;
 }
 
 #home {
-  position: absolute;
-  top: 10%;
-  left: 0;
-  right: 0;
+  margin-top: 20%;
+  margin-bottom: 20%;
+}
+
+.contain-img {
+  object-fit: cover;
+}
+
+.small-img {
+  width: 35px;
+  height: 35px;
+}
+
+.hidden {
+  margin-left: -70%;
+}
+
+.padded {
+  margin: 4px;
+}
+
+.video-hidden {
+  display: none;
 }

@@ -1,10 +1,26 @@
 <nav class="header">
   <div class="nav-wrapper teal darken-4">
+    <button data-target="slide-out" class="left btn-flat waves-effect waves-light transparent sidenav-trigger">
+      <i class="material-icons white-text">menu</i>
+    </button>
     <a href="#/home/search" class="right">
       <i class="material-icons">search</i>
     </a>
   </div>
 </nav>
+<ul id="slide-out" class="sidenav">
+  <li>
+    <div class="user-view">
+      <div class="background">
+        <img src="/img/p_cover.jpg" class="contain-img" />
+      </div>
+      <img src="/img/jane_doe.jpg" class="circle" />
+      <span class="white-text name">Name Goes Here</span>
+    </div>
+  </li>
+  <li><a href="#/home/search"><i class="material-icons">search</i>Search</a></li>
+  <li><a href="#/home/settings"><i class="material-icons">notifications</i>Notifications <span class="new badge red">7</span></a></li>
+</ul>
 <div id="home"></div>
 <nav class="footer">
   <div class="nav-wrapper teal darken-4">
