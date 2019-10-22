@@ -21,8 +21,6 @@
           video_container.classList.remove('video-hidden');
           video.srcObject = stream;
         });
-      } else {
-        alert('no media');
       }
     });
     captureButton.addEventListener('click', (e) => {
