@@ -28,9 +28,6 @@ const MONGO_URI = mongo_uris[node_env];
 
 // MongoDB options
 const mongo_opts = {
-  socketOptions: {
-    keepAlive: true
-  },
   useNewUrlParser: true
 };
 

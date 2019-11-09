@@ -21,3 +21,21 @@ Object.defineProperty(exports, 'Encryptions', {
     return _encryptions.Encryptions;
   }
 });
+
+var _notifications = require('./notifications');
+
+Object.defineProperty(exports, 'notify', {
+  enumerable: true,
+  get: function get() {
+    return _notifications.notify;
+  }
+});
+
+var _socket = require('./socket');
+
+Object.defineProperty(exports, 'Socket', {
+  enumerable: true,
+  get: function get() {
+    return _socket.Socket;
+  }
+});

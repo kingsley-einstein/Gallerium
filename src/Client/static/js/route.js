@@ -7,6 +7,7 @@ Route.prototype = {
   isActive: false,
   keyword: '',
   scriptId: '',
+  parent: null,
   /**
    *
    * @param {{}} config
@@ -18,6 +19,7 @@ Route.prototype = {
     this.defaultUrl = config.defaultUrl || '';
     this.isParent = config.isParent || false;
     this.keyword = config.keyword || '';
+    this.parent = config.parent || null;
   },
   render() {
     fetch(this.url)

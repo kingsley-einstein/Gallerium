@@ -26,16 +26,32 @@ var SubscriptionSchema = new _mongoose.Schema({
   subscriber: {
     type: _mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
+    unique: true
   }
 });
 
 var Subscription = _mongoose2.default.model('Subscription', SubscriptionSchema);
 
-Subscription.findBySubscriber = function (subscriber, cb) {
+Subscription.findBySubscriber = function (subscriber) {
   return Subscription.findOne({
     subscriber: subscriber
-  }, cb);
+  });
+};
+
+Subscription.deleteBySubscriber = function (subscriber) {
+  return Subscription.delete({
+    subscriber: subscriber
+  });
+};
+
+Subscription.editBySubscriber = function (subscriber, update) {
+  return Subscription.findOneAndUpdate({
+    subscriber: subscriber
+  }, update, {
+    new: true,
+    useFindAndModify: false
+  });
 };
 
 exports.default = Subscription;

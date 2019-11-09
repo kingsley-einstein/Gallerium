@@ -107,4 +107,27 @@ export class Auth {
     }
     next();
   }
+
+  /**
+   *
+   * @param {Request} req
+   * @param {Response} res
+   * @param {*} next
+   */
+  static async checkIfExists(req, res, next) {
+    const {username} = req.body;
+    const user = await new Promise((resolve) => {
+      User.findByUsername(username).then((u) => {
+        resolve(u);
+      });
+    });
+    if (user) {
+      res.status(400).json({
+        status: 400,
+        error: 'There is a user with that username'
+      });
+      return;
+    }
+    next();
+  }
 }

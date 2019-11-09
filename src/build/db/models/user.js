@@ -19,6 +19,9 @@ var UserSchema = new _mongoose.Schema({
     type: String,
     required: {
       message: 'Username is required'
+    },
+    unique: {
+      message: 'Username already in use'
     }
   },
   password: {

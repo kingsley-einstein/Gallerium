@@ -55,8 +55,12 @@ body {
   z-index: 2;
 }
 
+a {
+  cursor: pointer;
+}
+
 #home {
-  margin-top: 15%;
+  margin-top: 20%;
   margin-bottom: 20%;
 }
 
@@ -79,4 +83,15 @@ body {
 
 .video-hidden {
   display: none;
+}
+
+.flexed-div {
+  display: flex;
+  min-height: 100vh;
+  flex-flow: column wrap;
+}
+
+.full-page {
+  flex: 1 0 auto;
+  margin: 40% auto;
 }

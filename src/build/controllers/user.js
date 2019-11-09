@@ -365,8 +365,8 @@ var UserController = function () {
 
     /**
      *
-     * @param {Request} req 
-     * @param {Response} res 
+     * @param {Request} req
+     * @param {Response} res
      */
 
   }, {
@@ -423,6 +423,111 @@ var UserController = function () {
       }
 
       return logout;
+    }()
+
+    /**
+     *
+     * @param {Request} req
+     * @param {Response} res
+     */
+
+  }, {
+    key: 'getLoggedUser',
+    value: function () {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(req, res) {
+        var user, data;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                try {
+                  user = req.user;
+                  data = {
+                    id: user._id,
+                    username: user.username
+                  };
+
+                  res.status(200).json({
+                    status: 200,
+                    data: data
+                  });
+                } catch (error) {
+                  res.status(500).json({
+                    status: 500,
+                    error: error
+                  });
+                }
+
+              case 1:
+              case 'end':
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function getLoggedUser(_x11, _x12) {
+        return _ref6.apply(this, arguments);
+      }
+
+      return getLoggedUser;
+    }()
+
+    /**
+     *
+     * @param {Request} req
+     * @param {Response} res
+     */
+
+  }, {
+    key: 'getAllUsers',
+    value: function () {
+      var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(req, res) {
+        var data;
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                _context7.prev = 0;
+                _context7.next = 3;
+                return new Promise(function (resolve) {
+                  User.find().then(function (docs) {
+                    resolve(docs);
+                  });
+                });
+
+              case 3:
+                data = _context7.sent;
+
+                res.status(200).json({
+                  status: 200,
+                  data: data
+                });
+                _context7.next = 10;
+                break;
+
+              case 7:
+                _context7.prev = 7;
+                _context7.t0 = _context7['catch'](0);
+
+                res.status(500).json({
+                  status: 500,
+                  error: _context7.t0
+                });
+
+              case 10:
+              case 'end':
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this, [[0, 7]]);
+      }));
+
+      function getAllUsers(_x13, _x14) {
+        return _ref7.apply(this, arguments);
+      }
+
+      return getAllUsers;
     }()
   }]);
 

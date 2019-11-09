@@ -18,6 +18,10 @@ var _routes = require('../routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 
+var _client = require('../client');
+
+var _client2 = _interopRequireDefault(_client);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (app, _ref) {
@@ -40,4 +44,5 @@ exports.default = function (app, _ref) {
     }
   }));
   app.use('/api/v1', _routes2.default);
+  (0, _client2.default)(app);
 };

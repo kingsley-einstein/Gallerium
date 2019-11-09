@@ -20,6 +20,9 @@ var FileSchema = new _mongoose.Schema({
   bytes: {
     type: String
   },
+  mimeType: {
+    type: String
+  },
   owner: {
     type: _mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -29,5 +32,24 @@ var FileSchema = new _mongoose.Schema({
 });
 
 var FileItem = _mongoose2.default.model('File', FileSchema);
+
+FileItem.findAllByOwner = function (owner) {
+  return FileItem.find({
+    owner: owner
+  });
+};
+
+FileItem.deleteByOwner = function (owner) {
+  return FileItem.deleteMany({
+    owner: owner
+  });
+};
+
+FileItem.deleteByOwnerAndId = function (owner, _id) {
+  return FileItem.deleteOne({
+    owner: owner,
+    _id: _id
+  });
+};
 
 exports.default = FileItem;

@@ -199,6 +199,62 @@ var Auth = exports.Auth = function () {
       }
       next();
     }
+
+    /**
+     *
+     * @param {Request} req
+     * @param {Response} res
+     * @param {*} next
+     */
+
+  }, {
+    key: 'checkIfExists',
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res, next) {
+        var username, user;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                username = req.body.username;
+                _context2.next = 3;
+                return new Promise(function (resolve) {
+                  User.findByUsername(username).then(function (u) {
+                    resolve(u);
+                  });
+                });
+
+              case 3:
+                user = _context2.sent;
+
+                if (!user) {
+                  _context2.next = 7;
+                  break;
+                }
+
+                res.status(400).json({
+                  status: 400,
+                  error: 'There is a user with that username'
+                });
+                return _context2.abrupt('return');
+
+              case 7:
+                next();
+
+              case 8:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function checkIfExists(_x4, _x5, _x6) {
+        return _ref2.apply(this, arguments);
+      }
+
+      return checkIfExists;
+    }()
   }]);
 
   return Auth;

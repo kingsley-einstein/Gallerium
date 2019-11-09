@@ -9,9 +9,6 @@ export default (app) => {
   app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../Client/index.html'));
   });
-  app.get('/landing', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../Client/views/landing.html'));
-  });
   app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../Client/views/login.html'));
   });

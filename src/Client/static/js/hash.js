@@ -1,31 +1,58 @@
 /* eslint-disable no-unused-vars */
-/**
- *
- * @param {string} token
- * @param {string} _signing_entity
- * @return {string} useful in hashing
- */
-function hash(token, _signing_entity) {
-  let signer = '';
-  for (let i = 0; i < _signing_entity.length; i++) {
-    signer += _signing_entity.charCodeAt(Math.floor(i));
-  }
-  const new_signer = signer.replace('1', '$').replace('2', '%');
-  const hash = Buffer.from(JSON.stringify({
-    hash: (token.replace('.', '$') + '=' + new_signer)
-  }));
-  return hash.toString('base64');
-}
 
 /**
  *
- * @param {string} encrypted
- * @return {string} unhashed string
  */
-function unhash(encrypted) {
-  const reversed = Buffer.from(encrypted, 'base64').toString('utf8');
-  const unhashed = JSON.parse(reversed);
-  const splits = unhashed.hash.split('=');
-  const actual_token = splits[0].replace('$', '.');
-  return actual_token;
-}
+function Hasher() {};
+
+/**
+ * @param {string} token
+ */
+Hasher.asyncTokenAsJson = async (token) => {
+  const splitToken = token.split('.');
+  const header = splitToken[0];
+  const payload = splitToken[1];
+  const signature = splitToken[2];
+  const headerCharCodeArr = [];
+  const payloadCharCodeArr = [];
+  const signatureCharCodeArr = [];
+  for (let i = 0; i < header.length; i++) {
+    const charCode = header.charCodeAt(i);
+    headerCharCodeArr.push(charCode);
+  }
+  for (let i = 0; i < payload.length; i++) {
+    const charCode = payload.charCodeAt(i);
+    payloadCharCodeArr.push(charCode);
+  }
+  for (let i = 0; i < signature.length; i++) {
+    const charCode = signature.charCodeAt(i);
+    signatureCharCodeArr.push(charCode);
+  }
+  const obj = {
+    headerCharCodeArr,
+    payloadCharCodeArr,
+    signatureCharCodeArr
+  };
+  const asJson = JSON.stringify(obj);
+  return asJson;
+};
+
+/**
+ * @param {string} json
+ */
+Hasher.asyncJsonAsToken = async (json) => {
+  const obj = JSON.parse(json);
+  let header = '';
+  let payload = '';
+  let signature = '';
+  for (let i = 0; i < obj.headerCharCodeArr.length; i++) {
+    header += String.fromCharCode(obj.headerCharCodeArr[i]);
+  }
+  for (let i = 0; i < obj.payloadCharCodeArr.length; i++) {
+    payload += String.fromCharCode(obj.payloadCharCodeArr[i]);
+  }
+  for (let i = 0; i < obj.signatureCharCodeArr.length; i++) {
+    signature += String.fromCharCode(obj.signatureCharCodeArr[i]);
+  }
+  return header + '.' + payload + '.' + signature;
+};

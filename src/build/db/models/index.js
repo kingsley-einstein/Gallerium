@@ -24,6 +24,18 @@ var _subscription = require('./subscription');
 
 var _subscription2 = _interopRequireDefault(_subscription);
 
+var _like = require('./like');
+
+var _like2 = _interopRequireDefault(_like);
+
+var _notification = require('./notification');
+
+var _notification2 = _interopRequireDefault(_notification);
+
+var _comment = require('./comment');
+
+var _comment2 = _interopRequireDefault(_comment);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var models = {
@@ -31,7 +43,10 @@ var models = {
   Profile: _profile2.default,
   FileItem: _file2.default,
   Blacklist: _blacklist2.default,
-  Subscription: _subscription2.default
+  Subscription: _subscription2.default,
+  Like: _like2.default,
+  Notification: _notification2.default,
+  Comment: _comment2.default
 };
 
 exports.default = models;

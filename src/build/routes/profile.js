@@ -16,4 +16,8 @@ router.post('/profile', _middlewares.Auth.checkToken, _controllers.ProfileContro
 
 router.put('/profile', _middlewares.Auth.checkToken, _controllers.ProfileController.update);
 
+router.get('/profile', _middlewares.Auth.checkToken, _controllers.ProfileController.getUserProfile);
+
+router.get('/profile/:user_id', _middlewares.Auth.checkToken, _controllers.ProfileController.getAnotherUserProfile);
+
 exports.default = router;

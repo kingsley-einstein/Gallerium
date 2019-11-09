@@ -17,6 +17,7 @@ export class Socket {
    */
   static wire(io) {
     io.on('connect', (socket) => {
+      console.log('Connection made to socket with id: ', socket.id);
       socket.on('GET_ALL_NOTIFICATIONS', async (data) => {
         const payload = jwt.decode(data.token);
         const notifs = await Notification.findByOwner(payload.id);

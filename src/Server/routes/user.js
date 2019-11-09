@@ -7,6 +7,7 @@ const router = Router();
 router.post(
   '/auth/register',
   Auth.checkBody,
+  Auth.checkIfExists,
   UserController.create
 );
 
@@ -30,6 +31,18 @@ router.post(
   '/auth/logout',
   Auth.checkToken,
   UserController.logout
+);
+
+router.get(
+  '/auth/authenticated_user',
+  Auth.checkToken,
+  UserController.getLoggedUser
+);
+
+router.get(
+  '/auth/getAll',
+  Auth.checkToken,
+  UserController.getAllUsers
 );
 
 export default router;

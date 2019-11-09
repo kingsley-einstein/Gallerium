@@ -209,4 +209,52 @@ export default class UserController {
       });
     }
   }
+
+  /**
+   *
+   * @param {Request} req
+   * @param {Response} res
+   */
+  static async getLoggedUser(req, res) {
+    try {
+      const {user} = req;
+      const data = {
+        id: user._id,
+        username: user.username
+      };
+      res.status(200).json({
+        status: 200,
+        data
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error
+      });
+    }
+  }
+
+  /**
+   *
+   * @param {Request} req
+   * @param {Response} res
+   */
+  static async getAllUsers(req, res) {
+    try {
+      const data = await new Promise((resolve) => {
+        User.find().then((docs) => {
+          resolve(docs);
+        });
+      });
+      res.status(200).json({
+        status: 200,
+        data
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error
+      });
+    }
+  }
 }

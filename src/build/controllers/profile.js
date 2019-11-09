@@ -31,9 +31,9 @@ var ProfileController = function () {
     key: 'create',
 
     /**
-     * 
-     * @param {Request} req 
-     * @param {Response} res 
+     *
+     * @param {Request} req
+     * @param {Response} res
      */
     value: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
@@ -88,9 +88,9 @@ var ProfileController = function () {
     }()
 
     /**
-     * 
-     * @param {Request} req 
-     * @param {Response} res 
+     *
+     * @param {Request} req
+     * @param {Response} res
      */
 
   }, {
@@ -143,6 +143,122 @@ var ProfileController = function () {
       }
 
       return update;
+    }()
+
+    /**
+     *
+     * @param {Request} req
+     * @param {Response} res
+     */
+
+  }, {
+    key: 'getUserProfile',
+    value: function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
+        var user, data;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                user = req.user;
+                _context3.next = 4;
+                return new Promise(function (resolve) {
+                  Profile.findByOwner(user._id).then(function (profile) {
+                    resolve(profile);
+                  });
+                });
+
+              case 4:
+                data = _context3.sent;
+
+                res.status(200).json({
+                  status: 200,
+                  data: data
+                });
+                _context3.next = 11;
+                break;
+
+              case 8:
+                _context3.prev = 8;
+                _context3.t0 = _context3['catch'](0);
+
+                res.status(500).json({
+                  status: 500,
+                  error: _context3.t0
+                });
+
+              case 11:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[0, 8]]);
+      }));
+
+      function getUserProfile(_x5, _x6) {
+        return _ref3.apply(this, arguments);
+      }
+
+      return getUserProfile;
+    }()
+
+    /**
+     *
+     * @param {Request} req
+     * @param {Response} res
+     */
+
+  }, {
+    key: 'getAnotherUserProfile',
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res) {
+        var user_id, data;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                user_id = req.params.user_id;
+                _context4.next = 4;
+                return new Promise(function (resolve) {
+                  Profile.findByOwner(user_id).then(function (profile) {
+                    resolve(profile);
+                  });
+                });
+
+              case 4:
+                data = _context4.sent;
+
+                res.status(200).json({
+                  status: 200,
+                  data: data
+                });
+                _context4.next = 11;
+                break;
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4['catch'](0);
+
+                res.status(500).json({
+                  status: 500,
+                  error: _context4.t0
+                });
+
+              case 11:
+              case 'end':
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[0, 8]]);
+      }));
+
+      function getAnotherUserProfile(_x7, _x8) {
+        return _ref4.apply(this, arguments);
+      }
+
+      return getAnotherUserProfile;
     }()
   }]);
 

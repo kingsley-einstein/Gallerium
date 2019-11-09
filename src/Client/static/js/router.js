@@ -1,16 +1,19 @@
 Router.prototype = {
   routes: {},
-  defaultUrl: '/landing',
+  defaultUrl: '/login',
   parentRoutes: {},
   constructor(routes = {}) {
     this.routes = routes;
     this.watchHashChange();
+    // this.watchPopState();
     this.navigateToDefault();
   },
   watchHashChange() {
     window.addEventListener('hashchange', (event) => {
+      // console.log(window.history);
       const route = this.routes[event.newURL.split('#')[1].split('?')[0]];
       const oldRoute = this.routes[event.oldURL.split('#')[1] ? event.oldURL.split('#')[1].split('?')[0] : ''];
+      // window.history.pushState(route.url, route.keyword, location.origin + route.url);
       route.render();
       route.setActiveState(event.newURL.split('#')[1]);
       if (route.script) {
@@ -37,12 +40,19 @@ Router.prototype = {
           location.hash = child.url;
         }, 1000);
       }
-      history.pushState({}, route.keyword, location.pathname + route.url);
     });
   },
   navigateToDefault() {
     const route = this.routes[this.defaultUrl];
     location.hash = route.url;
+  },
+  watchPopState() {
+    window.addEventListener('popstate', (event) => {
+      event.preventDefault();
+      const route = this.routes[location.pathname];
+      location.hash = route.url;
+      // history.forward();
+    });
   }
 };
 
