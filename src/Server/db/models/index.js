@@ -6,6 +6,7 @@ import Subscription from './subscription';
 import Like from './like';
 import Notification from './notification';
 import Comment from './comment';
+import Follow from './follow';
 
 const models = {
   User,
@@ -15,7 +16,8 @@ const models = {
   Subscription,
   Like,
   Notification,
-  Comment
+  Comment,
+  Follow
 };
 
 export default models;

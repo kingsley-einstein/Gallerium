@@ -1,20 +1,40 @@
 <div class="row">
   <div class="col s4 m7">
     <div id="fab">
-      <button id="toggle" class="btn btn-floating btn-large blue pulse" target-item="hidden">
+      <button
+        id="toggle"
+        class="btn btn-floating btn-large blue pulse"
+        target-item="hidden"
+      >
         <i class="material-icons">cloud_upload</i>
       </button>
       <ul class="hidden" id="hidden">
-        <li class="padded"><button class="btn btn-floating btn-medium purple" id="camera_btn"><i class="material-icons">camera</i></button></li>
-        <li class="padded"><button class="btn btn-floating btn-medium yellow"><i class="material-icons">videocam</i></button></li>
+        <li class="padded">
+          <button class="btn btn-floating btn-medium purple" id="camera_btn">
+            <i class="material-icons">camera</i>
+          </button>
+        </li>
+        <li class="padded">
+          <button class="btn btn-floating btn-medium yellow">
+            <i class="material-icons">videocam</i>
+          </button>
+        </li>
       </ul>
     </div>
   </div>
   <div class="col s12 m6 video-hidden" id="video-container">
-    <button class="btn btn-floating btn-medium red" id="cancel" style="margin: 4px;">
+    <button
+      class="btn btn-floating btn-medium red"
+      id="cancel"
+      style="margin: 4px;"
+    >
       <i class="material-icons">cancel</i>
     </button>
-    <button class="btn btn-floating btn-medium green" id="capture" style="margin: 4px;">
+    <button
+      class="btn btn-floating btn-medium green"
+      id="capture"
+      style="margin: 4px;"
+    >
       <i class="material-icons">center_focus_strong</i>
     </button>
     <video class="responsive-video center-align" id="player" autoplay></video>
@@ -33,7 +53,11 @@
                   <input type="file" accept="image/*, video/*" multiple />
                 </div>
                 <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text" placeholder="Select files to upload">
+                  <input
+                    class="file-path validate"
+                    type="text"
+                    placeholder="Select files to upload"
+                  />
                 </div>
               </div>
             </div>
@@ -47,7 +71,11 @@
             <div class="row">
               <div class="input-field col s12">
                 <i class="small material-icons prefix">mode_edit</i>
-                <textarea class="materialize-textarea" name="description" id="description"></textarea>
+                <textarea
+                  class="materialize-textarea"
+                  name="description"
+                  id="description"
+                ></textarea>
                 <label for="description">Description</label>
               </div>
             </div>

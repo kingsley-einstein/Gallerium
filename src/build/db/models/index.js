@@ -36,6 +36,10 @@ var _comment = require('./comment');
 
 var _comment2 = _interopRequireDefault(_comment);
 
+var _follow = require('./follow');
+
+var _follow2 = _interopRequireDefault(_follow);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var models = {
@@ -46,7 +50,8 @@ var models = {
   Subscription: _subscription2.default,
   Like: _like2.default,
   Notification: _notification2.default,
-  Comment: _comment2.default
+  Comment: _comment2.default,
+  Follow: _follow2.default
 };
 
 exports.default = models;
